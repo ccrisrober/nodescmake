@@ -6,21 +6,21 @@ class Group :
 {
 public:
   NODES_API
-    Group( const std::string name );
+  Group( const std::string name );
   NODES_API
   virtual ~Group( );
 
   NODES_API
-    bool hasNodes( void ) const;
+  bool hasNodes( void ) const;
   NODES_API
   unsigned int numChildren( void ) const;
 
   NODES_API
-    void addChild( Node* node );
+  void addChild( Node* node );
   NODES_API
-    void removeChild( Node* node );
+  void removeChild( Node* node );
   NODES_API
-    void removeChildren( void );
+  void removeChildren( void );
   NODES_API
   Node* nodeAt( unsigned int idx );
 
@@ -28,6 +28,16 @@ public:
   T* nodeAt( unsigned int idx )
   {
     return static_cast< T* >( nodeAt( idx ); )
+  }
+  NODES_API
+  void insertChild( unsigned int idx, Node* node )
+  {
+    // TODO Insert at position (WARNING: CHECK position)
+  }
+  NODES_API
+  void removeChild( unsigned int idx )
+  {
+    // TODO: Same as insertChild warnings
   }
 
   // TODO: getNode (string)
