@@ -3,6 +3,8 @@
 #include <iostream>
 #include <nodes/api.h>
 
+class Node;
+
 typedef std::string ComponentUID;
 #define IMPLEMENT_COMPONENT(__CLASS__) \
 public: \

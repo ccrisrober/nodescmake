@@ -2,6 +2,7 @@
 
 #include "Node.h"
 #include <nodes/api.h>
+#include <vector>
 
 class Camera;
 
