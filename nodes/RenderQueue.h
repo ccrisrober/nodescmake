@@ -1,7 +1,8 @@
 #pragma once
 
 #include <vector>
-#include "MeshRenderer.h"
+#include "components/MeshRenderer.h"
+
 class Camera;
 
 #include <nodes/api.h>

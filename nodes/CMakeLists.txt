@@ -1,55 +1,72 @@
 source_group(\\ FILES CMakeLists.txt)
 
 set( NODES_PUBLIC_HEADERS
-  ApplyVisitor.h
-  CustomComponent.h
-  Group.h
-  OtherComponent.h
-  RenderQueue.h
-  UpdateWorldState.h
-  Camera.h
+  components/Component.h
+  components/CustomComponent.h
+  components/MeshRenderer.h
+  components/OtherComponent.h
+
+  scenegraph/Camera.h
+  scenegraph/Group.h
+  scenegraph/Light.h
+  scenegraph/Node.h
+  scenegraph/Switch.h
+
+  systems/RenderSystem.h
+  systems/System.h
+  systems/UpdateSystem.h
+
+  visitors/ChildrenCounterVisitor.h
+  visitors/FetchCameras.h
+  visitors/FetchLights.h
+  visitors/FetchGeometry.h
+  visitors/LambdaVisitor.h
+  visitors/PickingVisitor.h
+  visitors/PrintNameVisitor.h
+  visitors/StartComponents.h
+  visitors/UpdateComponents.h
+  visitors/UpdateWorldState.h
+  visitors/Visitor.h
+
   Engine.h
-  MeshRenderer.h
-  PickingVisitor.h
-  StartComponents.h
-  ChildrenCounterVisitor.h
-  FetchCameras.h
-  Node.h
-  PrintNameVisitor.h
-  Switch.h
-  Component.h
-  FetchGeometry.h
-  NodeVisitor.h
   Renderer.h
-  UpdateComponents.h
+  RenderQueue.h
 )
 
 set( NODES_HEADERS
 )
 
 set( NODES_SOURCES
-  ApplyVisitor.cpp
+  components/Component.cpp
+  components/CustomComponent.cpp
+  components/MeshRenderer.cpp
+  components/OtherComponent.cpp
+
+  scenegraph/Camera.cpp
+  scenegraph/Group.cpp
+  scenegraph/Light.cpp
+  scenegraph/Node.cpp
+  scenegraph/Switch.cpp
+
+  systems/RenderSystem.cpp
+  systems/System.cpp
+  systems/UpdateSystem.cpp
+
+  visitors/ChildrenCounterVisitor.cpp
+  visitors/FetchCameras.cpp
+  visitors/FetchLights.cpp
+  visitors/FetchGeometry.cpp
+  visitors/LambdaVisitor.cpp
+  visitors/PickingVisitor.cpp
+  visitors/PrintNameVisitor.cpp
+  visitors/StartComponents.cpp
+  visitors/UpdateComponents.cpp
+  visitors/UpdateWorldState.cpp
+  visitors/Visitor.cpp
+
   Engine.cpp
-  Node.cpp
   Renderer.cpp
-  UpdateComponents.cpp
-  Camera.cpp
-  FetchCameras.cpp
-  NodeVisitor.cpp
   RenderQueue.cpp
-  UpdateWorldState.cpp
-  ChildrenCounterVisitor.cpp
-  FetchGeometry.cpp
-  OtherComponent.cpp
-  Component.cpp
-  Group.cpp
-  PickingVisitor.cpp
-  StartComponents.cpp
-  CustomComponent.cpp
-  MeshRenderer.cpp
-  PrintNameVisitor.cpp
-  Switch.cpp
-  #Source.cpp
 )
 
 set( NODES_LINK_LIBRARIES

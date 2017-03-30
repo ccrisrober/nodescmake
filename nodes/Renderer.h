@@ -1,6 +1,6 @@
 #pragma once
 #include "RenderQueue.h"
-#include "Camera.h"
+#include "scenegraph/Camera.h"
 class Renderer
 {
 public:

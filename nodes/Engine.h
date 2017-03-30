@@ -1,17 +1,23 @@
 #pragma once
 
-#include "StartComponents.h"
-#include "FetchCameras.h"
-#include "UpdateWorldState.h"
-#include "Node.h"
-#include "Group.h"
-#include "Camera.h"
+#include "visitors/StartComponents.h"
+#include "visitors/FetchCameras.h"
+#include "visitors/UpdateWorldState.h"
+#include "scenegraph/Node.h"
+#include "scenegraph/Group.h"
+#include "scenegraph/Camera.h"
 #include "RenderQueue.h"
 
 #include <algorithm>
 #include <string>
 
 #include <nodes/api.h>
+
+#include "systems/System.h"
+#include "systems/RenderSystem.h"
+#include "systems/UpdateSystem.h"
+
+#include <unordered_map>
 
 class Engine
 {
@@ -117,4 +123,42 @@ public:
       callback( camera );
     }
   }
+
+
+
+  NODES_API
+  void iAddSystem( System* ss )
+  {
+    _systems.insert( std::make_pair( ss->name( ), ss ) );
+  }
+
+  NODES_API
+  void iStart( void )
+  {
+    iAddSystem( new UpdateSystem( ) );
+    iAddSystem( new RenderSystem( ) );
+
+    for ( auto system : _systems )
+    {
+      if ( system.second != nullptr )
+      {
+        system.second->start();
+      }
+    }
+  }
+  NODES_API
+  void iStop( void )
+  {
+    for ( auto system: _systems )
+    {
+      if ( system.second != nullptr )
+      {
+        system.second->stop( );
+      }
+      delete system.second; // TODO: Because be pointers, my friend ;)
+    }
+
+    _systems.clear( );
+  }
+  std::unordered_map< std::string, System* > _systems;
 };
