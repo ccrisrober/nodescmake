@@ -147,6 +147,11 @@ public:
     }
   }
   NODES_API
+  void iUpdate( void )
+  {
+
+  }
+  NODES_API
   void iStop( void )
   {
     for ( auto system: _systems )
