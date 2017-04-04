@@ -38,7 +38,7 @@ common_application( nodesExample03 )
 
 
 set( NODESEXAMPLE04_HEADERS )
-set( NODESEXAMPLE04_SOURCES example01.cpp )
+set( NODESEXAMPLE04_SOURCES example04.cpp )
 set( NODESEXAMPLE04_LINK_LIBRARIES
   nodes
 )

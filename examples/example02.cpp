@@ -50,4 +50,5 @@ int main( )
   ccv2.traverse( scene );
   std::cout << ccv2._childrens << std::endl;*/
   delete scene;
+  system( "PAUSE" );
 }

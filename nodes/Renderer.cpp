@@ -16,7 +16,7 @@ void Renderer::beginRender( void )
 
 void Renderer::render( RenderQueue* rq, RenderPass* rp )
 {
-  // TODO: rp->render( this, rq, rq->camera( ) );
+  rp->render( this, rq, rq->camera( ) );
 }
 
 void Renderer::endRender( void )

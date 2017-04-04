@@ -30,6 +30,10 @@ include(Common)
 # Allow warnings
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w")
 
+#common_find_package( tinyxml2 REQUIRED  )
+
+#list (APPEND NODES_DEPENDENT_LIBRARIES tinyxml2)
+
 common_find_package_post( )
 
 add_subdirectory( nodes )

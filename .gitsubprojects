@@ -1,1 +1,2 @@
 # -*- mode: cmake -*-
+#git_subproject(tinyxml2 https://github.com/leethomason/tinyxml2.git fc05f63)

@@ -12,5 +12,7 @@ int main( )
   n.addComponent( new CustomComponent( ) );
   exist = n.hasComponent<CustomComponent>( );
   comp = n.getComponent<CustomComponent>( );
+  system( "PAUSE" );
+  system( "PAUSE" );
   return 0;
 }

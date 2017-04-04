@@ -25,5 +25,6 @@ int main( )
   e.setScene( scene );
   e.run( );
   delete scene;
+  system( "PAUSE" );
   return 0;
 }

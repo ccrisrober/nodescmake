@@ -48,6 +48,7 @@ void Group::removeChildren( void )
   std::for_each( _children.begin( ), _children.end( ), [] ( Node* n )
   {
     n->parent( nullptr );
+    delete( n );
   } );
   _children.clear( );
 }

@@ -33,10 +33,71 @@ protected:
   int shader;
 };
 
+class Renderer;
+class RenderQueue;
+
 class RenderPass
 {
 public:
+  void render( Renderer* renderer, RenderQueue* rq, Camera* c )
+  {
+
+  }
   std::vector< ImageEffect *> _imageEffects;
+};
+
+class StandardRP: public RenderPass
+{
+public:
+  void render( Renderer* renderer, RenderQueue* rq, Camera* c )
+  {
+    // computeShadows( )S
+    renderOpaqueObjects( renderer, rq, c );
+    renderTransparentObjects( renderer, rq, c );
+  }
+
+protected:
+  void renderOpaqueObjects( Renderer* renderer, RenderQueue* rq, Camera* c )
+  {
+    /*auto renderables = rq->renderables( OPAQUE );
+    if ( renderables.empty( ) )
+    {
+      return;
+    }
+    rq->each( renderables, {
+      auto mat = r->material;
+      mat->set( "projection", ... );
+      mat->set( "view", ... );
+      // if (isShadowEnabled( )) { }
+      // if (isLightEnabled( )) { bindEachLight( ); }
+
+      renderStandardGeometry( renderer, renderable->geometry, material, renderable->modelTransform );
+
+      // if (isLightEnabled( )) { unbindEachLight( ); }
+      // if (isShadowEnabled( )) { }
+
+    });*/
+  }
+  void renderTransparentObjects( Renderer* renderer, RenderQueue* rq, Camera* c )
+  {
+    /*auto renderables = rq->renderables( OPAQUE );
+    if ( renderables.empty( ) )
+    {
+      return;
+    }
+
+    rq->each( renderables, {
+      auto mat = renderable->material;
+      mat->set( "projection", ... );
+      mat->set( "view", ... );
+
+      renderStandardGeometry( renderer, renderable->geometry, material, renderable->modelTransform );
+    });*/
+  }
+  /*void renderStandardGeometry( Renderer* renderer, Geometry *g, Material* m, std::vector< float > modelTransform )
+  {
+
+  }*/
 };
 
 class Camera:
