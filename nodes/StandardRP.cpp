@@ -30,6 +30,12 @@ void StandardRP::renderOpaqueObjects( Renderer* renderer, RenderQueue* rq, Camer
     // if (isShadowEnabled( )) { }
 
   });*/
+  for ( auto& renderable : renderables )
+  {
+    // TODO: set projection and view
+
+    renderStandardGeometry( renderer, renderable );
+  }
 }
 void StandardRP::renderTransparentObjects( Renderer* renderer, RenderQueue* rq, Camera* c )
 {
@@ -48,7 +54,9 @@ void StandardRP::renderTransparentObjects( Renderer* renderer, RenderQueue* rq, 
 }
 void StandardRP::renderStandardGeometry( Renderer* renderer, Renderable* renderable )
 {
-  renderable->geom->forEachPrimitive( [] ( Primitive *pr ){
-    std::cout << "Draw primitive" << std::endl;
+  renderable->geom->forEachPrimitive( [] ( Primitive *pr )
+  {
+    //std::cout << "Draw primitive" << std::endl;
+    pr->render( );
   } );
 }

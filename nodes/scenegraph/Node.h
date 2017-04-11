@@ -6,6 +6,7 @@
 #include "../visitors/Visitor.h"
 
 #include <nodes/api.h>
+#include <algorithm>
 
 class Node
 {
@@ -13,15 +14,11 @@ public:
   NODES_API
   Node( const std::string& name );
   NODES_API
-  virtual ~Node( );
+  virtual ~Node( void );
   NODES_API
-  std::string name( ) const;
+  std::string name( void ) const;
   NODES_API
-  void name( const std::string& name )
-  {
-    _name = name;
-  }
-
+  void name( const std::string& name );
 protected:
   Node* _parent;
   std::string _name;
@@ -36,72 +33,41 @@ public:
 
 public:
   NODES_API
-    bool hasParent( void ) const;
+  bool hasParent( void ) const;
   NODES_API
   Node* parent( void );
 
   template<class NodeClass>
-  NodeClass* parent( void )
-  {
-    return static_cast< NodeClass* >( _parent );
-  }
+  NodeClass* parent( void );
+
   void parent( Node* p );
 
   NODES_API
-    void startComponents( );
+  void startComponents( void );
   NODES_API
-    void addComponent( Component* comp );
+  void addComponent( Component* comp );
   NODES_API
-    void updateComponents( const float& dt );
+  void updateComponents( const float& dt );
   NODES_API
-    void detachAllComponents( void );
+  void detachAllComponents( void );
   NODES_API
   void forEachComponent( std::function< void( Component * ) > callback );
 
   template <class T>
-  bool hasComponent( )
-  {
-    auto aux = _components.find( T::StaticGetUID( ) );
-    if ( aux == _components.end( ) )
-    {
-      return false;
-    }
-    return true;
-  }
+  bool hasComponent( void );
   template <class T>
-  T* getComponent( )
-  {
-    auto aux = _components.find( T::StaticGetUID( ) );
-    if ( aux == _components.end( ) )
-    {
-      return nullptr;
-    }
-    return static_cast<T*>( aux->second );
-  }
-  /*template <class T>
-  void removeComponent( )
-  {
-    onDetach( );
-  }
+  T* getComponent( void );
   template <class T>
-  void removeComponents( )
-  {
-
-  }
+  void removeComponent( void );
   template <class T>
-  T* componentInparent( void )
-  {
-    return nullptr;
-  }*/
+  void removeComponents( void );
+  template <class T>
+  T* componentInParent( void );
   NODES_API
   Component* getComponentByName( const std::string& name );
-  /*std::vector<Componente*> getComponentsByName( const std::string& name )
-  {
-    std::vector<Componente*> cs;
-    auto finds = _components.find( name );
-    return cs;
-  }*/
+  std::vector<Component*> getComponentsByName( const std::string& name );
   protected:
     std::unordered_multimap<std::string, Component*> _components;
 };
 
+#include "Node.inl"

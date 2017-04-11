@@ -3,6 +3,9 @@
 #include "Node.h"
 #include "../components/MeshRenderer.h"
 
+#include <iostream>
+#include <string>
+
 class Primitive
 {
 public:
@@ -11,6 +14,10 @@ public:
   {
   }
   std::string name;
+  void render( )
+  {
+    std::cout << "Render primitive '" << name << "'" << std::endl;
+  }
 };
 
 class Geometry: public Node

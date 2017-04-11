@@ -18,6 +18,11 @@ std::string Node::name( ) const
   return _name;
 }
 
+void Node::name( const std::string& name )
+{
+  _name = name;
+}
+
 void Node::perform( Visitor &visitor )
 {
   visitor.traverse( this );
@@ -106,4 +111,19 @@ Component* Node::getComponentByName( const std::string& name )
     return nullptr;
   }
   return aux->second;
+}
+
+Component* getComponentByName( const std::string& name );
+std::vector<Component*>Node::getComponentsByName( const std::string& name )
+{
+  std::vector<Component*> cs;
+
+  auto finds = _components.equal_range( name );
+
+  std::transform( finds.first, finds.second,
+    std::back_inserter( cs ), [] ( std::pair<std::string, Component*> element ){
+    return element.second;
+  } );
+
+  return cs;
 }
