@@ -43,3 +43,12 @@ set( NODESEXAMPLE04_LINK_LIBRARIES
   nodes
 )
 common_application( nodesExample04 )
+
+
+
+set( NODESEXAMPLEXML_HEADERS )
+set( NODESEXAMPLEXML_SOURCES exampleXML.cpp )
+set( NODESEXAMPLEXML_LINK_LIBRARIES
+  nodes
+)
+common_application( nodesExampleXML )

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<app title="First app">
+  <objects>
+    <object name="cube">
+      <transform position="[0.0, 3.15, -8.98]" scale="[2.0, 2.0, 1.0]"></transform>
+      <components>
+        <component name="RotateComponent">
+          <axis>X</axis>
+          <rotate>true</rotate>
+        </component>
+        <!--<component name="TranslateComponent" />
+        <component name="RotateComponent">
+          <axis>Z</axis>
+          <rotate>true</rotate>
+        </component>-->
+      </components>
+    </object>
+  </objects>
+</app>

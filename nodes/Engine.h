@@ -16,12 +16,22 @@
 #include "systems/System.h"
 #include "systems/RenderSystem.h"
 #include "systems/UpdateSystem.h"
+#include "visitors/FetchGeometry.h"
 
 #include <unordered_map>
+
+#include "Renderer.h"
+#include "Clock.hpp"
 
 class Engine
 {
 public:
+  Renderer * renderer;
+  NODES_API
+  Engine( )
+  {
+    renderer = new OpenGLRenderer( );
+  }
   Group* scene = nullptr;
   NODES_API
   void setScene( Group *g )
@@ -66,16 +76,20 @@ public:
     {
       if ( c != nullptr )
       {
-        auto renderQueue = new RenderQueue( );
-        renderQueue->camera( c );
-        //scene->perform( ComputeRenderQueue( c, renderQueue ) );
-        rqCollection.push_back( renderQueue );
+        RenderQueue* rq = new RenderQueue( );
+        FetchGeometry fg( c, rq );
+        scene->perform( fg );
+        rqCollection.push_back( rq );
       }
     } );
     // \\ UPDATE STEP
 
     // RENDER STEP
     // TODO
+    std::cout << "~~~~~~~~~~ BEGIN RENDER ~~~~~~~~~~" << std::endl;
+    renderer->beginRender( );
+    renderer->clearBuffers( );
+    std::cout << "~~~~~~~~~~ RENDER SCENE ~~~~~~~~~~" << std::endl;
     if ( !rqCollection.empty( ) )
     {
       RenderQueue *mainQueue = nullptr;
@@ -86,6 +100,7 @@ public:
         {
           // Render queue with rq camera
           std::cout << "Render outscreen (" << rq->camera( )->name( ) << ")" << std::endl;
+          renderer->render( rq, rq->camera( )->renderPass( ) );
         }
         else
         {
@@ -97,8 +112,11 @@ public:
       {
         // Render main queue
         std::cout << "render main queue (" << mainQueue->camera( )->name( ) << ")" << std::endl;
+        renderer->render( mainQueue, mainQueue->camera( )->renderPass( ) );
       }
     }
+    std::cout << "~~~~~~~~~~ END RENDER ~~~~~~~~~~" << std::endl;
+    renderer->endRender( );
     // \\ RENDER STEP
     std::cout << "Engine did update" << std::endl;
 

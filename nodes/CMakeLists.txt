@@ -7,6 +7,7 @@ set( NODES_PUBLIC_HEADERS
   components/OtherComponent.h
 
   scenegraph/Camera.h
+  scenegraph/Geometry.h
   scenegraph/Group.h
   scenegraph/Light.h
   scenegraph/Node.h
@@ -28,9 +29,18 @@ set( NODES_PUBLIC_HEADERS
   visitors/UpdateWorldState.h
   visitors/Visitor.h
 
+  third_party/pugixml.hpp
+  third_party/pugiconfig.hpp
+
   Engine.h
   Renderer.h
   RenderQueue.h
+  ImageEffect.hpp
+  SepiaImageEffect.hpp
+  RenderPass.hpp
+  StandardRP.hpp
+
+  Clock.hpp
 )
 
 set( NODES_HEADERS
@@ -43,6 +53,7 @@ set( NODES_SOURCES
   components/OtherComponent.cpp
 
   scenegraph/Camera.cpp
+  scenegraph/Geometry.cpp
   scenegraph/Group.cpp
   scenegraph/Light.cpp
   scenegraph/Node.cpp
@@ -64,9 +75,16 @@ set( NODES_SOURCES
   visitors/UpdateWorldState.cpp
   visitors/Visitor.cpp
 
+  third_party/pugixml.cpp
+
   Engine.cpp
   Renderer.cpp
+  RenderPass.cpp
   RenderQueue.cpp
+  SepiaImageEffect.cpp
+  StandardRP.cpp
+
+  Clock.cpp
 )
 
 set( NODES_LINK_LIBRARIES

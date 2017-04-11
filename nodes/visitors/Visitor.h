@@ -1,6 +1,7 @@
 #pragma once
 
 class Node;
+class Geometry;
 class Group;
 class Camera;
 class Light;
@@ -25,7 +26,9 @@ public:
   NODES_API
   virtual void visitCamera( Camera *camera );
   NODES_API
-  virtual void visitLight( Light* light );
+    virtual void visitLight( Light* light );
+  NODES_API
+    virtual void visitGeometry( Geometry *geometry );
 private:
   Visitor( const Visitor& );
   Visitor &operator= ( const Visitor& );

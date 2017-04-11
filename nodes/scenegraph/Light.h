@@ -7,10 +7,13 @@ class Light :
   public Node
 {
 public:
-  Light( void );
+  NODES_API
+    Light( void );
+  NODES_API
   ~Light( void );
 
 public:
+  NODES_API
   virtual void accept( Visitor& v ) override;
 };
 

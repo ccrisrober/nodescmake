@@ -1,31 +1,19 @@
 #include "FetchGeometry.h"
-#include "../scenegraph/Node.h"
+#include "../scenegraph/Camera.h"
 #include "../scenegraph/Group.h"
-#include "../components//MeshRenderer.h"
+#include "../scenegraph/Geometry.h"
+#include "../scenegraph/Light.h"
 
 
-FetchGeometry::FetchGeometry( int c )
+FetchGeometry::FetchGeometry( Camera* c, RenderQueue *rq_ )
 : Visitor( )
 , camera( c )
+, rq(rq_)
 {
 }
 
 FetchGeometry::~FetchGeometry( )
 {
-}
-
-void FetchGeometry::visitNode( Node* n )
-{
-  auto comp = n->getComponent<MeshRenderer>( );
-  if ( comp != nullptr )
-  {
-    MeshRenderer *mr = static_cast< MeshRenderer* >( comp );
-    std::cout << "Has geometry" << std::endl;
-    if ( mr->vao % camera == 0 )
-    {
-      rq.pushGeometry( mr );
-    }
-  }
 }
 
 void FetchGeometry::visitGroup( Group *group )
@@ -38,6 +26,21 @@ void FetchGeometry::visitGroup( Group *group )
 
 void FetchGeometry::traverse( Node* node )
 {
-  rq.reset( );
+  rq->reset( );
+  rq->setCamera( camera );
+  // TODO: COMPUTE CULLING
   Visitor::traverse( node );
 }
+
+void FetchGeometry::visitGeometry( Geometry *geometry )
+{
+  // TODO: Culled camera layer and frustum culling
+
+  rq->pushGeometry( geometry );
+}
+
+void FetchGeometry::visitLight( Light *light )
+{
+  rq->pushLight( light );
+}
+

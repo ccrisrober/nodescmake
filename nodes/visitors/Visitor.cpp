@@ -1,6 +1,7 @@
 #include "Visitor.h"
 
 #include "../scenegraph/Node.h"
+#include "../scenegraph/Geometry.h"
 #include "../scenegraph/Group.h"
 #include "../scenegraph/Camera.h"
 #include "../scenegraph/Light.h"
@@ -47,4 +48,9 @@ void Visitor::visitCamera( Camera *camera )
 void Visitor::visitLight( Light* light )
 {
   visitNode( light );
+}
+
+void Visitor::visitGeometry( Geometry *geometry )
+{
+  visitNode( geometry );
 }

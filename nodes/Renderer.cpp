@@ -1,5 +1,7 @@
 #include "Renderer.h"
-
+#include "RenderPass.hpp"
+#include "RenderQueue.h"
+#include "scenegraph/Camera.h"
 
 Renderer::Renderer( )
 {
@@ -22,4 +24,5 @@ void Renderer::render( RenderQueue* rq, RenderPass* rp )
 void Renderer::endRender( void )
 {
   // Clear data
+  std::cout << "unbind renderer" << std::endl;
 }

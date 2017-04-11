@@ -88,7 +88,6 @@ void Node::forEachComponent( std::function< void( Component * ) > callback )
   // create a copy of the component's collection
   // to prevent errors when attaching or detaching
   // components during an update pass
-  // TODO: should we lock this instead?
   auto cs = _components;
   for ( auto cmp : cs )
   {

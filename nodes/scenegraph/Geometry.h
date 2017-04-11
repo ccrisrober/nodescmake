@@ -1,25 +1,35 @@
 #pragma once
 
 #include "Node.h"
+#include "../components/MeshRenderer.h"
+
+class Primitive
+{
+public:
+  Primitive( const std::string& name_ )
+    : name( name_ )
+  {
+  }
+  std::string name;
+};
 
 class Geometry: public Node
 {
 public:
+  NODES_API
   Geometry( const std::string& name = "" )
     : Node( name )
   {
+    addComponent( new MeshRenderer( 1 ) );
   }
 
   virtual ~Geometry( )
   {
-    while( hasPrimitives( ) )
-    {
-      removePrimitive( )
-    }
+    removeAllPrimitives( );
   }
-  void removeAllPrimitivives( void )
+  void removeAllPrimitives( void )
   {
-
+    _primitives.clear( );
   }
 
   bool hasPrimitives( void ) const
@@ -29,15 +39,14 @@ public:
 
   void addPrimitive( Primitive* p )
   {
-
+    _primitives.push_back( p );
   }
   void removePrimitive( Primitive *p )
   {
-
+    // TODO: Worst code in the world xD
+    _primitives.erase( std::find( _primitives.begin( ), _primitives.end( ), p ) );
   }
-
   void forEachPrimitive( std::function< void(Primitive* )> cb );
-  void updateModelBounds( void );
 
 protected:
   std::vector< Primitive* > _primitives;
@@ -45,9 +54,3 @@ protected:
 public:
   virtual void accept( Visitor& v ) override;
 };
-
-
-void Geometry::accept( Visitor& v )
-{
-  v.visitGeometry( this );
-}

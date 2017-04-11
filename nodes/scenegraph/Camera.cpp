@@ -16,13 +16,11 @@ void Camera::accept( Visitor& v )
   v.visitCamera( this );
 }
 
-void SepiaToneEffect::compute( Camera* )
+void Camera::renderPass( RenderPass* rp )
 {
-
+  _renderPass = rp;
 }
-
-void SepiaToneEffect::apply( Camera* camera )
+RenderPass* Camera::renderPass( )
 {
-  // bind shader, texture, draw and unbind texture and shader
-  std::cout << "Aplicando SepiaToneEffect" << std::endl;
+  return _renderPass;
 }
