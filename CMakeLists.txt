@@ -37,6 +37,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w")
 common_find_package_post( )
 
 add_subdirectory( nodes )
+#add_subdirectory( physics )
 add_subdirectory( examples )
 
 set(DOXYGEN_MAINPAGE_MD ${PROJECT_SOURCE_DIR}/README.md)

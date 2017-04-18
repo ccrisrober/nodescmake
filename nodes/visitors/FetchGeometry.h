@@ -17,14 +17,22 @@ public:
   virtual ~FetchGeometry( );
   NODES_API
   virtual void traverse( Node* n ) override;
+  //NODES_API
+  //virtual void visitNode( Node* n ) override;
   NODES_API
-    virtual void visitGroup( Group* g ) override;
+  virtual void visitGroup( Group* g ) override;
   NODES_API
-    virtual void visitGeometry( Geometry* n ) override;
+  virtual void visitGeometry( Geometry* n ) override;
   NODES_API
-    virtual void visitLight( Light* l ) override;
+  virtual void visitLight( Light* l ) override;
 protected:
   Camera* camera;
   RenderQueue* rq;
 };
 
+/* TODO
+if ( camera->layer( ).check( geometry->layer( ) ) )
+{
+rq->pushGeometry( geometry );
+}
+*/

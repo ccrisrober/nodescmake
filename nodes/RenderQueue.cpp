@@ -1,6 +1,5 @@
 #include "RenderQueue.h"
 
-
 RenderQueue::RenderQueue( )
 {
   _renderables[ RenderableType::OPAQUE ] = std::vector<Renderable*>( );
@@ -9,6 +8,7 @@ RenderQueue::RenderQueue( )
 
 RenderQueue::~RenderQueue( )
 {
+  reset( );
 }
 
 void RenderQueue::reset( )
@@ -28,4 +28,26 @@ void RenderQueue::setCamera( Camera* c )
 Camera* RenderQueue::camera( )
 {
   return _camera;
+}
+std::vector<Renderable*> RenderQueue::renderables( RenderableType t )
+{
+  return _renderables[ t ];
+}
+void RenderQueue::pushGeometry( Geometry* g )
+{
+  auto mr = g->getComponent< MeshRenderer >( );
+  if ( mr == nullptr )
+  {
+    return;
+  }
+
+  Renderable* r = new Renderable( );
+  r->material = 1;
+  r->geom = g;
+
+  _renderables[ RenderableType::OPAQUE ].push_back( r );
+}
+void RenderQueue::pushLight( Light * l )
+{
+  _lights.push_back( l );
 }

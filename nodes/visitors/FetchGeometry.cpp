@@ -36,7 +36,11 @@ void FetchGeometry::visitGeometry( Geometry *geometry )
 {
   // TODO: Culled camera layer and frustum culling
 
-  rq->pushGeometry( geometry );
+  if ( camera->layer( ).check( geometry->layer( ) ) )
+  {
+    rq->pushGeometry( geometry );
+  }
+  //rq->pushGeometry( geometry );
 }
 
 void FetchGeometry::visitLight( Light *light )

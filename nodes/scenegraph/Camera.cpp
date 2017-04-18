@@ -1,10 +1,22 @@
 #include "Camera.h"
 
+#include "../StandardRP.hpp"
+
 Camera* Camera::_mainCamera = nullptr;
 
 Camera::Camera( )
-: Node( "camera" )
+: Camera( new StandardRP( ) )
 {
+}
+
+Camera::Camera( RenderPass* rp )
+: Node( "camera" )
+, _renderPass( rp )
+{
+  for ( unsigned int i = 0; i < 32; ++i )
+  {
+    this->layer( ).enable( i );
+  }
 }
 
 Camera::~Camera( )

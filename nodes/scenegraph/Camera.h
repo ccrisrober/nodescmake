@@ -3,8 +3,7 @@
 #include "Node.h"
 #include <nodes/api.h>
 
-#include "../RenderPass.hpp"
-#include "../ImageEffect.hpp"
+class RenderPass;
 
 class Camera:
   public Node
@@ -24,7 +23,9 @@ private:
   static Camera *_mainCamera;
 public:
   NODES_API
-    Camera( );
+  Camera( void );
+  NODES_API
+  Camera( RenderPass* rp );
   NODES_API
   virtual ~Camera( );
 public:
@@ -46,7 +47,6 @@ public:
   {
     _isMainCamera = v;
   }
-
 private:
   bool _isMainCamera = false;
 protected:

@@ -29,20 +29,12 @@ set( NODESEXAMPLE02_LINK_LIBRARIES
 common_application( nodesExample02 )
 
 
-set( NODESEXAMPLE03_HEADERS )
-set( NODESEXAMPLE03_SOURCES example03.cpp )
-set( NODESEXAMPLE03_LINK_LIBRARIES
+set( NODESEXAMPLEGROUP_HEADERS )
+set( NODESEXAMPLEGROUP_SOURCES exampleGroup.cpp )
+set( NODESEXAMPLEGROUP_LINK_LIBRARIES
   nodes
 )
-common_application( nodesExample03 )
-
-
-set( NODESEXAMPLE04_HEADERS )
-set( NODESEXAMPLE04_SOURCES example04.cpp )
-set( NODESEXAMPLE04_LINK_LIBRARIES
-  nodes
-)
-common_application( nodesExample04 )
+common_application( nodesExampleGroup )
 
 
 
@@ -52,3 +44,24 @@ set( NODESEXAMPLEXML_LINK_LIBRARIES
   nodes
 )
 common_application( nodesExampleXML )
+
+set( NODESTESTS_HEADERS )
+set( NODESTESTS_SOURCES tests.cpp )
+set( NODESTESTS_LINK_LIBRARIES
+  nodes
+)
+common_application( nodesTests )
+
+set( NODESEXAMPLEPOSTPROCESS_HEADERS )
+set( NODESEXAMPLEPOSTPROCESS_SOURCES examplePostProcess.cpp )
+set( NODESEXAMPLEPOSTPROCESS_LINK_LIBRARIES
+  nodes
+)
+common_application( nodesExamplePostProcess )
+
+set( NODESEXAMPLEOFFSCREEN_HEADERS )
+set( NODESEXAMPLEOFFSCREEN_SOURCES exampleOffScreen.cpp )
+set( NODESEXAMPLEOFFSCREEN_LINK_LIBRARIES
+  nodes
+)
+common_application( nodesExampleOffScreen )

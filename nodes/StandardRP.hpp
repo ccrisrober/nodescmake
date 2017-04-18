@@ -2,11 +2,13 @@
 
 #include "RenderPass.hpp"
 
-struct Renderable;
+#include "Renderer.h"
+#include "RenderQueue.h"
 
 class StandardRP: public RenderPass
 {
 public:
+  NODES_API
   void render( Renderer* renderer, RenderQueue* rq, Camera* c );
 
 protected:

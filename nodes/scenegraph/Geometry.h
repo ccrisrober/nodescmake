@@ -16,7 +16,7 @@ public:
   std::string name;
   void render( )
   {
-    std::cout << "Render primitive '" << name << "'" << std::endl;
+    std::cout << "\t-Primitive '" << name << "'" << std::endl;
   }
 };
 

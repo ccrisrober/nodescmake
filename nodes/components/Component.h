@@ -17,19 +17,19 @@ class Component
   friend class Node;
 public:
   NODES_API
-    virtual ComponentUID GetUID( ) const = 0;
+  virtual ComponentUID GetUID( ) const = 0;
   NODES_API
-    virtual ~Component( );
+  virtual ~Component( );
   NODES_API
-    Node* node( );
+  Node* node( );
   NODES_API
-    void update( const float &dt );
+  void update( const float &dt );
   NODES_API
-    virtual void start( void );
+  virtual void start( void );
   NODES_API
-    virtual void onAttach( void );
+  virtual void onAttach( void );
   NODES_API
-    virtual void onDetach( void );
+  virtual void onDetach( void );
   bool activo = true;
 private:
   void node( Node* n );

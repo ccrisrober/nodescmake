@@ -24,6 +24,11 @@ public:
     return !_lights.empty( );
   }
   NODES_API
+  std::vector<Light*> lights( ) const
+  {
+    return _lights;
+  }
+  NODES_API
   void forEachLight( std::function<void( Light* )> cb );
 protected:
   std::vector<Light*> _lights;

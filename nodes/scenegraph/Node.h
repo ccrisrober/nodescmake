@@ -4,12 +4,32 @@
 #include <unordered_map>
 #include <functional>
 #include "../visitors/Visitor.h"
+#include "../Layer.hpp"
 
 #include <nodes/api.h>
 #include <algorithm>
+#include <string>
+
+class Transformation
+{
+public:
+  void computeFrom( const Transformation&, const Transformation& )
+  {
+    std::cout << "Computando transformación" << std::endl;
+  }
+};
 
 class Node
 {
+public:
+  NODES_API
+  Layer& layer( )
+  {
+    return _layer;
+  }
+private:
+  Layer _layer;
+
 public:
   NODES_API
   Node( const std::string& name );
@@ -63,11 +83,44 @@ public:
   void removeComponents( void );
   template <class T>
   T* componentInParent( void );
+
   NODES_API
   Component* getComponentByName( const std::string& name );
+  NODES_API
   std::vector<Component*> getComponentsByName( const std::string& name );
-  protected:
-    std::unordered_multimap<std::string, Component*> _components;
+
+protected:
+  std::unordered_multimap<std::string, Component*> _components;
+
+public:
+  void setLocal( const Transformation &t )
+  {
+    _local = t;
+  }
+  const Transformation &getLocal( void ) const
+  {
+    return _local;
+  }
+  Transformation &local( void )
+  {
+    return _local;
+  }
+
+  void setWorld( const Transformation &t )
+  {
+    _world = t;
+  }
+  const Transformation &getWorld( void ) const
+  {
+    return _world;
+  }
+  Transformation &world( void )
+  {
+    return _world;
+  }
+protected:
+  Transformation _local;
+  Transformation _world;
 };
 
 #include "Node.inl"

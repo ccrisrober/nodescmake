@@ -8,7 +8,7 @@ class CustomComponent : public Component
   IMPLEMENT_COMPONENT( CustomComponent )
 public:
   NODES_API
-    CustomComponent( );
+  CustomComponent( );
   NODES_API
   virtual ~CustomComponent( );
   int v;

@@ -1,12 +1,9 @@
 #include "StandardRP.hpp"
-#include "RenderQueue.h"
 
 void StandardRP::render( Renderer* renderer, RenderQueue* rq, Camera* c )
 {
   // computeShadows( )
-  std::cout << "Render OpaqueObjects" << std::endl;
   renderOpaqueObjects( renderer, rq, c );
-  std::cout << "Render TransparentObjects" << std::endl;
   renderTransparentObjects( renderer, rq, c );
 }
 
@@ -17,6 +14,7 @@ void StandardRP::renderOpaqueObjects( Renderer* renderer, RenderQueue* rq, Camer
   {
     return;
   }
+  std::cout << "Render OpaqueObjects" << std::endl;
   /*rq->each( renderables, {
     auto mat = r->material;
     mat->set( "projection", ... );
@@ -44,7 +42,7 @@ void StandardRP::renderTransparentObjects( Renderer* renderer, RenderQueue* rq, 
   {
     return;
   }
-
+  std::cout << "Render TransparentObjects" << std::endl;
   for ( auto& renderable : renderables )
   {
     // TODO: set projection and view

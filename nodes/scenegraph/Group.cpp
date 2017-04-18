@@ -38,8 +38,8 @@ void Group::removeChild( Node* n )
 {
   if ( n->parent( ) == this )
   {
+    _children.erase( std::remove( _children.begin( ), _children.end( ), n ), _children.end( ) );
     n->parent( nullptr );
-    // TODO: _children.erase( n );
   }
 }
 #include <algorithm>
@@ -48,7 +48,7 @@ void Group::removeChildren( void )
   std::for_each( _children.begin( ), _children.end( ), [] ( Node* n )
   {
     n->parent( nullptr );
-    delete( n );
+    delete n;
   } );
   _children.clear( );
 }

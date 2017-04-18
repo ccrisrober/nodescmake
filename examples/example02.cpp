@@ -11,12 +11,12 @@ int main( )
 
   scene->addChild( leftNode );
   scene->addChild( centerSwitch );
-  scene->addChild( rightNode );
 
   auto firstNodeSwitch = new Node( "firstNodeSwitch" );
   auto secondNodeSwitch = new Group( "secondNodeSwitch" );
   secondNodeSwitch->addChild( new Node( "firstSecondNodeSwitch" ) );
   auto thirdNodeSwitch = new Node( "thirdNodeSwitch" );
+  secondNodeSwitch->addChild( rightNode );
 
   centerSwitch->addChild( firstNodeSwitch );
   centerSwitch->addChild( secondNodeSwitch );
@@ -24,9 +24,10 @@ int main( )
 
   leftNode->addComponent( new MeshRenderer( 3 ) );
   secondNodeSwitch->addComponent( new MeshRenderer( 12 ) );
+  secondNodeSwitch->addChild( new Node( "RandomNodeFromSecondSwitch" ) );
   //rightNode->addComponent( new MeshRenderer( 2 ) );
 
-  centerSwitch->currentNodeIndex( 1 );
+  centerSwitch->currentNodeIndex( 0 );
 
   /*PrintNameVisitor v;
   v.visitGroup( scene );
@@ -38,9 +39,9 @@ int main( )
   fv2.traverse( scene );
   std::cout << fv2.rq.size( ) << std::endl;*/
 
-  ChildrenCounterVisitor ccv;
+  /*ChildrenCounterVisitor ccv;
   ccv.traverse( scene );
-  std::cout << ccv._childrens << std::endl;
+  std::cout << ccv._childrens << std::endl;*/
 
 
 
@@ -49,6 +50,20 @@ int main( )
   ChildrenCounterVisitor ccv2;
   ccv2.traverse( scene );
   std::cout << ccv2._childrens << std::endl;*/
+
+  Engine e;
+  e.setScene( scene );
+
+  for ( unsigned int i = 0, l = centerSwitch->numChildren( ); i < l; ++i )
+  {
+    e.run( );
+    if ( i > 0 )
+    {
+      std::cout << std::endl << std::endl << std::endl;
+    }
+    centerSwitch->currentNodeIndex( i );
+  }
+
   delete scene;
   system( "PAUSE" );
 }

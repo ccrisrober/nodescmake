@@ -4,6 +4,7 @@ set( NODES_PUBLIC_HEADERS
   components/Component.h
   components/CustomComponent.h
   components/MeshRenderer.h
+  components/OrbitCamera.h
   components/OtherComponent.h
 
   scenegraph/Camera.h
@@ -37,10 +38,20 @@ set( NODES_PUBLIC_HEADERS
   RenderQueue.h
   ImageEffect.hpp
   SepiaImageEffect.hpp
+  GreyImageEffect.hpp
   RenderPass.hpp
   StandardRP.hpp
+  OffscreenRP.hpp
+  PostRP.hpp
+
+  Layer.hpp
 
   Clock.hpp
+
+
+  physics/components/ICollider.hpp
+  physics/components/BoxCollider.hpp
+  physics/components/MeshCollider.hpp
 )
 
 set( NODES_HEADERS
@@ -82,7 +93,12 @@ set( NODES_SOURCES
   RenderPass.cpp
   RenderQueue.cpp
   SepiaImageEffect.cpp
+  GreyImageEffect.cpp
   StandardRP.cpp
+  OffscreenRP.cpp
+  PostRP.cpp
+
+  Layer.cpp
 
   Clock.cpp
 )

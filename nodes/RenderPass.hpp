@@ -1,16 +1,27 @@
 #pragma once
 
-class Renderer;
-class RenderQueue;
+#include <vector>
+#include "RenderQueue.h"
 #include "ImageEffect.hpp"
 
-#include <vector>
-
 class Camera;
+class Renderer;
 
 class RenderPass
 {
 public:
-  void render( Renderer* renderer, RenderQueue* rq, Camera* c );
+  //NODES_API
+  virtual void render( Renderer* renderer, RenderQueue* rq, Camera* c ) = 0;
+  NODES_API
+  virtual void applyImageEffects( Renderer *renderer, Camera *camera );
+  NODES_API
+  std::vector<ImageEffect*>& imageEffects( void )
+  {
+    return _imageEffects;
+  }
+protected:
   std::vector< ImageEffect *> _imageEffects;
+
+private:
+  void swapBuffers( Renderer* r );
 };

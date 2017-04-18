@@ -66,6 +66,7 @@ public:
   virtual bool update( void )
   {
     std::cout << "Engine will update" << std::endl;
+    std::cout << "~~~~~~~~~~ BEGIN UPDATE ~~~~~~~~~~" << std::endl;
     // UPDATE STEP
     // TODO: Fixed update
     scene->perform( UpdateWorldState( ) );
@@ -83,6 +84,7 @@ public:
       }
     } );
     // \\ UPDATE STEP
+    std::cout << "~~~~~~~~~~~ END UPDATE ~~~~~~~~~~~" << std::endl;
 
     // RENDER STEP
     // TODO
@@ -115,7 +117,7 @@ public:
         renderer->render( mainQueue, mainQueue->camera( )->renderPass( ) );
       }
     }
-    std::cout << "~~~~~~~~~~ END RENDER ~~~~~~~~~~" << std::endl;
+    std::cout << "~~~~~~~~~~~ END RENDER ~~~~~~~~~~~" << std::endl;
     renderer->endRender( );
     // \\ RENDER STEP
     std::cout << "Engine did update" << std::endl;
