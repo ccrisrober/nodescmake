@@ -27,7 +27,7 @@ public:
   template<typename T>
   T* nodeAt( unsigned int idx )
   {
-    return static_cast< T* >( nodeAt( idx ); )
+    return static_cast< T* >( nodeAt( idx ) );
   }
   NODES_API
   void insertChild( unsigned int idx, Node* node )

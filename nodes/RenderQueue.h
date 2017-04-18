@@ -1,7 +1,8 @@
 #pragma once
 
 #include <vector>
-#include <unordered_map>
+//#include <unordered_map>
+#include <map>
 #include "components/MeshRenderer.h"
 
 #include "scenegraph/Light.h"
@@ -43,6 +44,7 @@ public:
 protected:
   Camera* _camera;
   std::vector< Light* > _lights;
-  std::unordered_map< RenderableType, std::vector< Renderable* >> _renderables;
+  //std::unordered_map< RenderableType, std::vector< Renderable* >> _renderables;
+  std::map< RenderableType, std::vector< Renderable* >> _renderables;
 };
 

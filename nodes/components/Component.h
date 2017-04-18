@@ -12,6 +12,8 @@ public: \
   } \
   virtual ComponentUID GetUID( ) const { return StaticGetUID( ); }
 
+class Node;
+
 class Component
 {
   friend class Node;

@@ -15,7 +15,7 @@ class Transformation
 public:
   void computeFrom( const Transformation&, const Transformation& )
   {
-    std::cout << "Computando transformación" << std::endl;
+    std::cout << "Computing transform" << std::endl;
   }
 };
 
