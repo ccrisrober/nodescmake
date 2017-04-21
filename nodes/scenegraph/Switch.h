@@ -1,31 +1,38 @@
-#pragma once
+#ifndef __NODES_SWITCH__
+#define __NODES_SWITCH__
+
 #include "Group.h"
 #include <nodes/api.h>
-class Switch :
-  public Group
+
+namespace nodes
 {
-public:
-  NODES_API
-  Switch( const std::string name );
-  NODES_API
-  virtual ~Switch( );
+  class Switch :
+    public Group
+  {
+  public:
+    NODES_API
+    Switch( const std::string name );
+    NODES_API
+    virtual ~Switch( );
 
-  NODES_API
-  virtual void forEachNode( std::function<void( Node* )> cb );
-  NODES_API
-  Node* currentNode( void );
+    NODES_API
+    virtual void forEachNode( std::function<void( Node* )> cb );
+    NODES_API
+    Node* currentNode( void );
 
-  NODES_API
-  int currentNodeIndex( void ) const;
-  NODES_API
-  void currentNodeIndex( int idx );
+    NODES_API
+    int currentNodeIndex( void ) const;
+    NODES_API
+    void currentNodeIndex( int idx );
 
-  NODES_API
-  void selectNextNode( void );
-  NODES_API
-  void selectPrevNode( void );
+    NODES_API
+    void selectNextNode( void );
+    NODES_API
+    void selectPrevNode( void );
 
-private:
-  int _currentIdx;
-};
+  private:
+    int _currentIdx;
+  };
+}
 
+#endif /* __NODES_SWITCH__ */

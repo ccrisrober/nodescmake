@@ -10,28 +10,31 @@
 
 }*/
 
-void RenderPass::applyImageEffects( Renderer *renderer, Camera *camera )
+namespace nodes
 {
-  for ( auto& ie : _imageEffects )
+  void RenderPass::applyImageEffects( Renderer *renderer, Camera *camera )
   {
-    unsigned int fbo = 0;
-    ie->compute( camera );
+    for ( auto& ie : _imageEffects )
+    {
+      unsigned int fbo = 0;
+      ie->compute( camera );
 
-    renderer->bindFBO( fbo );
-    ie->apply( camera );
-    renderer->unbindFBO( fbo );
-    // Swap FBO?
-    swapBuffers( renderer );
+      renderer->bindFBO( fbo );
+      ie->apply( camera );
+      renderer->unbindFBO( fbo );
+      // Swap FBO?
+      swapBuffers( renderer );
+    }
   }
-}
 
-void RenderPass::swapBuffers( Renderer* r )
-{
-  //auto source = 1;
-  //auto destination = 2;
+  void RenderPass::swapBuffers( Renderer* r )
+  {
+    //auto source = 1;
+    //auto destination = 2;
 
-  std::cout << "Set source buffer with destination texture" << std::endl;
-  //renderer->setFBO(SOURCE, destination);
-  std::cout << "Set destination buffer with source texture" << std::endl;
-  //renderer->setFBO(DESTINATION, source);
+    std::cout << "Set source buffer with destination texture" << std::endl;
+    //renderer->setFBO(SOURCE, destination);
+    std::cout << "Set destination buffer with source texture" << std::endl;
+    //renderer->setFBO(DESTINATION, source);
+  }
 }

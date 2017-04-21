@@ -1,11 +1,17 @@
-#pragma once
+#ifndef __NODES_RENDER_SYSTEM__
+#define __NODES_RENDER_SYSTEM__
 
 #include "System.h"
 
-class RenderSystem: public System
+namespace nodes
 {
-public:
-  RenderSystem( void );
-  virtual bool start( void ) override;
-  virtual void stop( void ) override;
-};
+  class RenderSystem: public System
+  {
+  public:
+    RenderSystem( void );
+    virtual bool start( void ) override;
+    virtual void stop( void ) override;
+  };
+}
+
+#endif /* __NODES_RENDER_SYSTEM__ */

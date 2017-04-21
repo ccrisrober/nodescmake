@@ -1,10 +1,16 @@
-#pragma once
+#ifndef __NODES_ICOLLIDER__
+#define __NODES_ICOLLIDER__
 
 #include "../../components/Component.h"
 
-class ICollider: public Component
+namespace nodes
 {
-//  IMPLEMENT_COMPONENT( ICollider )
-protected:
-  ICollider( ) { };
-};
+  class ICollider: public Component
+  {
+  //  IMPLEMENT_COMPONENT( ICollider )
+  protected:
+    ICollider( ) { };
+  };
+}
+
+#endif /* __NODES_ICOLLIDER__ */

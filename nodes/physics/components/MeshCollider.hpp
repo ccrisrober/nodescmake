@@ -1,13 +1,19 @@
-#pragma once
+#ifndef __NODES_MESH_COLLIDER__
+#define __NODES_MESH_COLLIDER__
 
 #include "ICollider.hpp"
 
-class MeshCollider: public ICollider
+namespace nodes
 {
-  IMPLEMENT_COMPONENT( MeshCollider )
-  NODES_API
-  MeshCollider( void )
-  : ICollider( )
+  class MeshCollider: public ICollider
   {
-  }
-};
+    IMPLEMENT_COMPONENT( MeshCollider )
+    NODES_API
+    MeshCollider( void )
+    : ICollider( )
+    {
+    }
+  };
+}
+
+#endif /* __NODES_MESH_COLLIDER__ */

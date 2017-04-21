@@ -1,29 +1,35 @@
-#pragma once
+#ifndef __NODES_OFFSCREEN_RP__
+#define __NODES_OFFSCREEN_RP__
 
 #include "RenderPass.hpp"
 
-struct Renderable;
-
-class OffscreenRP: public RenderPass
+namespace nodes
 {
-public:
-  NODES_API
-  OffscreenRP( unsigned int fbo );
-  NODES_API
-  OffscreenRP( unsigned int fbo, RenderPass* sceneRenderPass );
-  NODES_API
-  void render( Renderer* renderer, RenderQueue* rq, Camera* c );
-  NODES_API
-  unsigned int targetFBO( void )
+  struct Renderable;
+
+  class OffscreenRP: public RenderPass
   {
-    return _fbo;
-  }
-  NODES_API
-  RenderPass* sceneRenderPass( void )
-  {
-    return _sceneRenderPass;
-  }
-protected:
-  unsigned int _fbo;
-  RenderPass* _sceneRenderPass;
-};
+  public:
+    NODES_API
+    OffscreenRP( unsigned int fbo );
+    NODES_API
+    OffscreenRP( unsigned int fbo, RenderPass* sceneRenderPass );
+    NODES_API
+    void render( Renderer* renderer, RenderQueue* rq, Camera* c );
+    NODES_API
+    unsigned int targetFBO( void )
+    {
+      return _fbo;
+    }
+    NODES_API
+    RenderPass* sceneRenderPass( void )
+    {
+      return _sceneRenderPass;
+    }
+  protected:
+    unsigned int _fbo;
+    RenderPass* _sceneRenderPass;
+  };
+}
+
+#endif /* __NODES_OFFSCREEN_RP__ */

@@ -1,13 +1,19 @@
-#pragma once
+#ifndef __NODES_BOX_COLLIDER__
+#define __NODES_BOX_COLLIDER__
 
 #include "ICollider.hpp"
 
-class BoxCollider: public ICollider
+namespace nodes
 {
-  IMPLEMENT_COMPONENT( BoxCollider )
-  NODES_API
-  BoxCollider( void )
-  : ICollider( )
+  class BoxCollider: public ICollider
   {
-  }
-};
+    IMPLEMENT_COMPONENT( BoxCollider )
+    NODES_API
+    BoxCollider( void )
+    : ICollider( )
+    {
+    }
+  };
+}
+
+#endif /* __NODES_BOX_COLLIDER__ */

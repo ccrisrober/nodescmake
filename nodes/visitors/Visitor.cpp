@@ -6,51 +6,55 @@
 #include "../scenegraph/Camera.h"
 #include "../scenegraph/Light.h"
 
-Visitor::~Visitor( )
+namespace nodes
 {
-}
+  Visitor::~Visitor( )
+  {
+  }
 
-Visitor::Visitor( const Visitor& ) {
-}
-Visitor &Visitor::operator= ( const Visitor& )
-{
-  return *this;
-}
+  Visitor::Visitor( const Visitor& )
+  {
+  }
 
-void Visitor::reset( void )
-{
+  Visitor &Visitor::operator= ( const Visitor& )
+  {
+    return *this;
+  }
 
-}
+  void Visitor::reset( void )
+  {
+  }
 
-void Visitor::traverse( Node *n )
-{
-  reset( );
-  n->accept( *this );
-}
-
-void Visitor::visitNode( Node *node )
-{
-  // do nothing
-}
-
-void Visitor::visitGroup( Group* group )
-{
-  group->forEachNode( [&] ( Node* n ) {
+  void Visitor::traverse( Node *n )
+  {
+    reset( );
     n->accept( *this );
-  } );
-}
+  }
 
-void Visitor::visitCamera( Camera *camera )
-{
-  visitNode( camera );
-}
+  void Visitor::visitNode( Node *node )
+  {
+    // do nothing
+  }
 
-void Visitor::visitLight( Light* light )
-{
-  visitNode( light );
-}
+  void Visitor::visitGroup( Group* group )
+  {
+    group->forEachNode( [&] ( Node* n ) {
+      n->accept( *this );
+    } );
+  }
 
-void Visitor::visitGeometry( Geometry *geometry )
-{
-  visitNode( geometry );
+  void Visitor::visitCamera( Camera *camera )
+  {
+    visitNode( camera );
+  }
+
+  void Visitor::visitLight( Light* light )
+  {
+    visitNode( light );
+  }
+
+  void Visitor::visitGeometry( Geometry *geometry )
+  {
+    visitNode( geometry );
+  }
 }

@@ -1,58 +1,60 @@
 #include "UpdateWorldState.h"
 
-UpdateWorldState::UpdateWorldState( )
-{
-}
-
-UpdateWorldState::~UpdateWorldState( )
-{
-}
-
 #include "../scenegraph/Node.h"
 #include "../scenegraph/Group.h"
 
-void UpdateWorldState::visitNode( Node *node )
+namespace nodes
 {
-  if ( node->hasParent( ) )
+  UpdateWorldState::UpdateWorldState( )
   {
-    std::cout << "Compute world model (" << node->name( ) << ") from parent (" 
-      << node->parent( )->name( ) << ")" << std::endl;
-    node->world( ).computeFrom( node->parent( )->getWorld( ), node->getLocal( ) );
   }
-  else
+
+  UpdateWorldState::~UpdateWorldState( )
   {
-    std::cout << "World model (" << node->name( ) << ") as local matrix" 
-      << std::endl;
-    node->setWorld( node->getLocal( ) );
   }
-  std::cout << "Compute world bound for (" << node->name( ) <<
-    ") to contain to himself" << std::endl;
-}
 
-void UpdateWorldState::visitGroup( Group *group )
-{
-  visitNode( group );
-  Visitor::visitGroup( group );
-
-  if ( group->hasNodes( ) )
+  void UpdateWorldState::visitNode( Node *node )
   {
-    bool first = true;
-    std::string tabs = "\t";
-    group->forEachNode( [&] ( Node *node )
+    if ( node->hasParent( ) )
     {
-      if ( first )
+      std::cout << "Compute world model (" << node->name( ) << ") from parent ("
+        << node->parent( )->name( ) << ")" << std::endl;
+      node->world( ).computeFrom( node->parent( )->getWorld( ), node->getLocal( ) );
+    }
+    else
+    {
+      std::cout << "World model (" << node->name( ) << ") as local matrix"
+        << std::endl;
+      node->setWorld( node->getLocal( ) );
+    }
+    std::cout << "Compute world bound for (" << node->name( ) <<
+      ") to contain to himself" << std::endl;
+  }
+
+  void UpdateWorldState::visitGroup( Group *group )
+  {
+    visitNode( group );
+    Visitor::visitGroup( group );
+
+    if ( group->hasNodes( ) )
+    {
+      bool first = true;
+      std::string tabs = "\t";
+      group->forEachNode( [&] ( Node *node )
       {
-        first = false;
-        std::cout << tabs << "Compute world bound for (" << group->name( ) <<
-          ") to contain '" << node->name( ) << "'" << std::endl;
-      }
-      else
-      {
-        std::cout << tabs << "Expand world bound for (" << group->name( ) << 
-          ") to contain '" << node->name( ) << "'" << std::endl;
-      }
-      tabs += "\t";
-    } );
+        if ( first )
+        {
+          first = false;
+          std::cout << tabs << "Compute world bound for (" << group->name( ) <<
+            ") to contain '" << node->name( ) << "'" << std::endl;
+        }
+        else
+        {
+          std::cout << tabs << "Expand world bound for (" << group->name( ) <<
+            ") to contain '" << node->name( ) << "'" << std::endl;
+        }
+        tabs += "\t";
+      } );
+    }
   }
 }
-

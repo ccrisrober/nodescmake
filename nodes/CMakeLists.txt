@@ -30,10 +30,10 @@ set( NODES_PUBLIC_HEADERS
   visitors/UpdateWorldState.h
   visitors/Visitor.h
 
-  third_party/pugixml.hpp
-  third_party/pugiconfig.hpp
+  #third_party/pugixml.hpp
+  #third_party/pugiconfig.hpp
 
-  Engine.h
+  App.hpp
   Renderer.h
   RenderQueue.h
   ImageEffect.hpp
@@ -52,6 +52,8 @@ set( NODES_PUBLIC_HEADERS
   physics/components/ICollider.hpp
   physics/components/BoxCollider.hpp
   physics/components/MeshCollider.hpp
+
+
 )
 
 set( NODES_HEADERS
@@ -86,9 +88,9 @@ set( NODES_SOURCES
   visitors/UpdateWorldState.cpp
   visitors/Visitor.cpp
 
-  third_party/pugixml.cpp
+  #third_party/pugixml.cpp
 
-  Engine.cpp
+  App.cpp
   Renderer.cpp
   RenderPass.cpp
   RenderQueue.cpp
@@ -104,6 +106,7 @@ set( NODES_SOURCES
 )
 
 set( NODES_LINK_LIBRARIES
+  #bullet
 )
 
 common_library( nodes )

@@ -1,17 +1,23 @@
-#pragma once
+#ifndef __NODES_SYSTEM__
+#define __NODES_SYSTEM__
 
 #include <string>
 
-class System
+namespace nodes
 {
-public:
-  System( const std::string& name );
-  virtual bool start( );
-  virtual void stop( );
-  std::string name( ) const
+  class System
   {
-    return _name;
-  }
-protected:
-  std::string _name;
-};
+  public:
+    System( const std::string& name );
+    virtual bool start( );
+    virtual void stop( );
+    std::string name( ) const
+    {
+      return _name;
+    }
+  protected:
+    std::string _name;
+  };
+}
+
+#endif /* __NODES_SYSTEM__ */

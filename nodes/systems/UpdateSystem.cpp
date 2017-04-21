@@ -1,29 +1,32 @@
 #include "UpdateSystem.h"
 
-UpdateSystem::UpdateSystem( )
-  : System( std::string( "UpdateSystem" ))
+namespace nodes
 {
-}
-
-bool UpdateSystem::start( void )
-{
-  if (!System::start( ))
+  UpdateSystem::UpdateSystem( )
+    : System( std::string( "UpdateSystem" ))
   {
-    return false;
   }
 
-  // Update??
+  bool UpdateSystem::start( void )
+  {
+    if (!System::start( ))
+    {
+      return false;
+    }
 
-  return true;
-}
+    // Update??
 
-void UpdateSystem::update( void )
-{
-  // Step 1: Update all nodes
-  // Step 2:
-}
+    return true;
+  }
 
-void UpdateSystem::stop( void )
-{
-  System::stop( );
+  void UpdateSystem::update( void )
+  {
+    // Step 1: Update all nodes
+    // Step 2:
+  }
+
+  void UpdateSystem::stop( void )
+  {
+    System::stop( );
+  }
 }

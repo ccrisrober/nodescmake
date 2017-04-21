@@ -2,6 +2,9 @@
 
 #include <nodes/nodes.h>
 
+using namespace nodes;
+
+
 int main( )
 {
   auto scene = new Group( "scene" );
@@ -23,9 +26,9 @@ int main( )
   Camera::mainCamera( cam );
   scene->addChild( cam );
 
-  Engine e;
-  e.setScene( scene );
-  e.run( );
+  App app;
+  app.setSceneNode( scene );
+  app.run( );
   delete scene;
 
   system( "PAUSE" );

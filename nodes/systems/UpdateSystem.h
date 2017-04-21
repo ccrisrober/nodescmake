@@ -1,14 +1,20 @@
-#pragma once
+#ifndef __NODES_UPDATE_SYSTEM__
+#define __NODES_UPDATE_SYSTEM__
 
 #include "System.h"
 
-class UpdateSystem: public System
+namespace nodes
 {
-public:
-  UpdateSystem( void );
-  virtual bool start( void ) override;
-  virtual void stop( void ) override;
+  class UpdateSystem: public System
+  {
+  public:
+    UpdateSystem( void );
+    virtual bool start( void ) override;
+    virtual void stop( void ) override;
 
-protected:
-  virtual void update( void );
-};
+  protected:
+    virtual void update( void );
+  };
+}
+
+#endif /* __NODES_UPDATE_SYSTEM__ */

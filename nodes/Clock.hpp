@@ -26,106 +26,109 @@
 #include <functional>
 #include <nodes/api.h>
 
-class Clock
+namespace nodes
 {
-public:
-  NODES_API
-  Clock( void );
-  NODES_API
-  explicit Clock( double dt );
-  NODES_API
-  Clock( const Clock &c );
-  NODES_API
-  ~Clock( void );
-  NODES_API
-  Clock &operator=( const Clock &other );
-
-  NODES_API
-  void reset( void );
-  NODES_API
-  void tick( void );
-
-  NODES_API
-  double currentTime( void ) const
+  class Clock
   {
-    return _currentTime;
-  }
-  NODES_API
-  void currentTime( double value )
-  {
-    _currentTime = value;
-  }
+  public:
+    NODES_API
+    Clock( void );
+    NODES_API
+    explicit Clock( double dt );
+    NODES_API
+    Clock( const Clock &c );
+    NODES_API
+    ~Clock( void );
+    NODES_API
+    Clock &operator=( const Clock &other );
 
-  NODES_API
-  double lastTime( void ) const
-  {
-    return _lastTime;
-  }
-  NODES_API
-  void lastTime( double value )
-  {
-    _lastTime = value;
-  }
+    NODES_API
+    void reset( void );
+    NODES_API
+    void tick( void );
 
-  NODES_API
-  double deltaTime( void ) const
-  {
-    return _deltaTime;
-  }
-  NODES_API
-  void deltaTime( double value )
-  {
-    _deltaTime = value;
-  }
+    NODES_API
+    double currentTime( void ) const
+    {
+      return _currentTime;
+    }
+    NODES_API
+    void currentTime( double value )
+    {
+      _currentTime = value;
+    }
 
-  NODES_API
-  double accumTime( void ) const
-  {
-    return _accumTime;
-  }
-  NODES_API
-  void accumTime( double value )
-  {
-    _accumTime = value;
-  }
+    NODES_API
+    double lastTime( void ) const
+    {
+      return _lastTime;
+    }
+    NODES_API
+    void lastTime( double value )
+    {
+      _lastTime = value;
+    }
 
-private:
-  double _currentTime;
-  double _lastTime;
-  double _deltaTime;
-  double _accumTime;
+    NODES_API
+    double deltaTime( void ) const
+    {
+      return _deltaTime;
+    }
+    NODES_API
+    void deltaTime( double value )
+    {
+      _deltaTime = value;
+    }
 
-public:
-  typedef std::function< void( void ) > TimeoutCallback;
-  //using TimeoutCallback = std::function< void( void ) >;
-  NODES_API
-    void setTimeout( TimeoutCallback const &callback,
-    double timeout, bool repeat = false );
+    NODES_API
+    double accumTime( void ) const
+    {
+      return _accumTime;
+    }
+    NODES_API
+    void accumTime( double value )
+    {
+      _accumTime = value;
+    }
 
-private:
-  TimeoutCallback _timeoutCallback;
-  double _timeout;
-  bool _repeat;
+  private:
+    double _currentTime;
+    double _lastTime;
+    double _deltaTime;
+    double _accumTime;
 
-public:
-  /**
-   Ticks the clock by a fixed delta time
-   As a side effect, _accumTime gets incremented by the new
-   _deltaTime. Callbacks get executed if timeout is over
-   */
-  NODES_API
-    Clock &operator+=( double delta );
+  public:
+    typedef std::function< void( void ) > TimeoutCallback;
+    //using TimeoutCallback = std::function< void( void ) >;
+    NODES_API
+      void setTimeout( TimeoutCallback const &callback,
+      double timeout, bool repeat = false );
 
-  /**
-   Ticks the clock by another clock's delta time
-   As a side effect, _accumTime gets incremented by the new
-   _deltaTime. Callbacks get executed if timeout is over
-   */
-  NODES_API
-    Clock &operator+=( const Clock &other );
+  private:
+    TimeoutCallback _timeoutCallback;
+    double _timeout;
+    bool _repeat;
 
-private:
-  void onTick( void );
-};
+  public:
+    /**
+     Ticks the clock by a fixed delta time
+     As a side effect, _accumTime gets incremented by the new
+     _deltaTime. Callbacks get executed if timeout is over
+     */
+    NODES_API
+      Clock &operator+=( double delta );
+
+    /**
+     Ticks the clock by another clock's delta time
+     As a side effect, _accumTime gets incremented by the new
+     _deltaTime. Callbacks get executed if timeout is over
+     */
+    NODES_API
+      Clock &operator+=( const Clock &other );
+
+  private:
+    void onTick( void );
+  };
+}
 
 #endif /* __MB_CLOCK__ */

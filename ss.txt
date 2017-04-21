@@ -1,0 +1,41 @@
+- GLSL Replaces
+ (DESKTOP)
+ #version 440
+ #define MB_GLSL_PRECISION_FLOAT_HIGHT
+ #define MB_GLSL_ATTR in
+ #define MB_GLSL_IN in
+ #define MB_GLSL_OUT out
+ #define MB_GLSL_TEX2D texture
+
+ (MOBILE)
+ #define MB_GLSL_PRECISION_FLOAT_HIGHT precision highp float;
+ #define MB_GLSL_ATTR attribute
+ #define MB_GLSL_IN varying
+ #define MB_GLSL_OUT varying
+ #define MB_GLSL_TEX2D texture2D
+
+
+example!
+(VERTEX)
+MB_GLSL_PRECISION_FLOAT_HIGHT
+
+MB_GLSL_ATTR vec3 position;
+
+MB_GLSL_OUT vec3 outPosition;
+
+void main( )
+{
+    outPosition = position;
+    gl_Position = vec4( position, 1.0 );
+}
+(FRAGMENT)
+MB_GLSL_PRECISION_FLOAT_HIGHT
+MB_GLSL_IN vec3 outPosition;
+
+uniform sampler2D colorTexture;
+
+void main( )
+{
+    vec4 color = MB_GLSL_TEX2D( colorTexture, gl_PointCoord );
+    ¿out?
+}

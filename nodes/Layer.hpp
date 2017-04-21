@@ -28,52 +28,55 @@
 
 #include <array>
 
-class LayerLookup
+namespace nodes
 {
-public:
-  NODES_API
-  static std::string name( const int& channel );
-  NODES_API
-  static void name( const std::string name, const int& index );
-  NODES_API
-  static int nameToID( const std::string& layer );
-protected:
-  static std::array<std::string, 32> _names;
-  static bool _initialized;
+  class LayerLookup
+  {
+  public:
+    NODES_API
+    static std::string name( const int& channel );
+    NODES_API
+    static void name( const std::string name, const int& index );
+    NODES_API
+    static int nameToID( const std::string& layer );
+  protected:
+    static std::array<std::string, 32> _names;
+    static bool _initialized;
 
-  static void initialize( );
-};
-class Layer
-{
-public:
-  NODES_API
-  Layer( );
-  NODES_API
-  void set( const int& channel );
-  NODES_API
-  void set( const std::string& layer );
-  NODES_API
-  void enable( const int& channel );
-  NODES_API
-  void enable( const std::string& layer );
-  NODES_API
-  void toggle( const int& channel );
-  NODES_API
-  void toggle( const std::string& layer );
-  NODES_API
-  void disable( const int& channel );
-  NODES_API
-  void disable( const std::string& layer );
-  NODES_API
-  bool check( const Layer& layer2 ) const;
-  NODES_API
-  bool check( const int& channel ) const;
-  NODES_API
-  bool check( const std::string& layer ) const;
-protected:
-  int _mask;
-private:
-  static int layerNameToID( const std::string& layer );
-};
+    static void initialize( );
+  };
+  class Layer
+  {
+  public:
+    NODES_API
+    Layer( );
+    NODES_API
+    void set( const int& channel );
+    NODES_API
+    void set( const std::string& layer );
+    NODES_API
+    void enable( const int& channel );
+    NODES_API
+    void enable( const std::string& layer );
+    NODES_API
+    void toggle( const int& channel );
+    NODES_API
+    void toggle( const std::string& layer );
+    NODES_API
+    void disable( const int& channel );
+    NODES_API
+    void disable( const std::string& layer );
+    NODES_API
+    bool check( const Layer& layer2 ) const;
+    NODES_API
+    bool check( const int& channel ) const;
+    NODES_API
+    bool check( const std::string& layer ) const;
+  protected:
+    int _mask;
+  private:
+    static int layerNameToID( const std::string& layer );
+  };
+}
 
 #endif

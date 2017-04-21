@@ -1,23 +1,26 @@
 #include "RenderSystem.h"
 
-RenderSystem::RenderSystem( )
-  : System( std::string( "RenderSystem" ))
+namespace nodes
 {
-}
-
-bool RenderSystem::start( void )
-{
-  if (!System::start( ))
+  RenderSystem::RenderSystem( )
+    : System( std::string( "RenderSystem" ))
   {
-    return false;
   }
 
-  // Update??
+  bool RenderSystem::start( void )
+  {
+    if (!System::start( ))
+    {
+      return false;
+    }
 
-  return true;
-}
+    // Update??
 
-void RenderSystem::stop( void )
-{
-  System::stop( );
+    return true;
+  }
+
+  void RenderSystem::stop( void )
+  {
+    System::stop( );
+  }
 }

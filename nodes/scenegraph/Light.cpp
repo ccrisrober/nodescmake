@@ -1,15 +1,18 @@
 #include "Light.h"
 
-Light::Light( )
-: Node( std::string("Light") )
+namespace nodes
 {
-}
+  Light::Light( )
+  : Node( std::string("Light") )
+  {
+  }
 
-Light::~Light( )
-{
-}
+  Light::~Light( )
+  {
+  }
 
-void Light::accept( Visitor& visitor )
-{
-  visitor.visitLight( this );
+  void Light::accept( Visitor& visitor )
+  {
+    visitor.visitLight( this );
+  }
 }

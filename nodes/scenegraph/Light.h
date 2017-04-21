@@ -1,20 +1,24 @@
-#ifndef __LIGHT__
-#define __LIGHT__
+#ifndef __NODES_LIGHT__
+#define __NODES_LIGHT__
 
 #include "Node.h"
 #include <nodes/api.h>
-class Light :
-  public Node
+
+namespace nodes
 {
-public:
-  NODES_API
-    Light( void );
-  NODES_API
-  ~Light( void );
+  class Light :
+    public Node
+  {
+  public:
+    NODES_API
+      Light( void );
+    NODES_API
+    ~Light( void );
 
-public:
-  NODES_API
-  virtual void accept( Visitor& v ) override;
-};
+  public:
+    NODES_API
+    virtual void accept( Visitor& v ) override;
+  };
+}
 
-#endif
+#endif /* __NODES_LIGHT__ */

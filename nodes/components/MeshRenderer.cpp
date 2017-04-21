@@ -1,11 +1,14 @@
 #include "MeshRenderer.h"
 
-MeshRenderer::MeshRenderer( int v )
-: Component( )
-, vao( v )
+namespace nodes
 {
-}
+  MeshRenderer::MeshRenderer( int v )
+  : Component( )
+  , vao( v )
+  {
+  }
 
-MeshRenderer::~MeshRenderer( )
-{
+  MeshRenderer::~MeshRenderer( )
+  {
+  }
 }

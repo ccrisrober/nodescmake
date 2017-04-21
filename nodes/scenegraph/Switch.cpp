@@ -1,60 +1,62 @@
 #include "Switch.h"
 
-
-Switch::Switch( const std::string name )
-: Group( name )
-, _currentIdx( 0 )
+namespace nodes
 {
-}
-
-Switch::~Switch( )
-{
-  std::cout << "Destroy switch" << std::endl;
-}
-
-void Switch::forEachNode( std::function<void( Node* )> cb )
-{
-  if ( !hasNodes( ) )
+  Switch::Switch( const std::string name )
+  : Group( name )
+  , _currentIdx( 0 )
   {
-    return;
   }
-  Node* current = nodeAt( _currentIdx );
-  if ( current != nullptr )
+
+  Switch::~Switch( )
   {
-    cb( current );
+    std::cout << "Destroy switch" << std::endl;
   }
-}
 
-void Switch::selectNextNode( void )
-{
-  if ( !hasNodes( ) )
+  void Switch::forEachNode( std::function<void( Node* )> cb )
   {
-    return;
+    if ( !hasNodes( ) )
+    {
+      return;
+    }
+    Node* current = nodeAt( _currentIdx );
+    if ( current != nullptr )
+    {
+      cb( current );
+    }
   }
-  _currentIdx = ( _currentIdx + 1 ) % numChildren( );
-}
 
-void Switch::selectPrevNode( void )
-{
-  if ( !hasNodes( ) )
+  void Switch::selectNextNode( void )
   {
-    return;
+    if ( !hasNodes( ) )
+    {
+      return;
+    }
+    _currentIdx = ( _currentIdx + 1 ) % numChildren( );
   }
-  unsigned int nChildren = numChildren( );
-  _currentIdx = ( _currentIdx + nChildren - 1 ) % nChildren;
-}
 
-Node* Switch::currentNode( void )
-{
-  return nodeAt( _currentIdx );
-}
+  void Switch::selectPrevNode( void )
+  {
+    if ( !hasNodes( ) )
+    {
+      return;
+    }
+    unsigned int nChildren = numChildren( );
+    _currentIdx = ( _currentIdx + nChildren - 1 ) % nChildren;
+  }
 
-int Switch::currentNodeIndex( void ) const
-{
-  return _currentIdx;
-}
+  Node* Switch::currentNode( void )
+  {
+    return nodeAt( _currentIdx );
+  }
 
-void Switch::currentNodeIndex( int idx )
-{
-  _currentIdx = idx;
+  int Switch::currentNodeIndex( void ) const
+  {
+    return _currentIdx;
+  }
+
+  void Switch::currentNodeIndex( int idx )
+  {
+    _currentIdx = idx;
+  }
 }

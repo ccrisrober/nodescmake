@@ -2,43 +2,46 @@
 #include "../scenegraph/Node.h"
 #include "../scenegraph/Group.h"
 
-PickingVisitor::PickingVisitor( const Ray& ray,
-  Results &results, FilterType filter )
-  : _ray( ray )
-  , _results( results)
-  , _filter( filter )
+namespace nodes
 {
-}
-
-PickingVisitor::~PickingVisitor( )
-{
-}
-
-void PickingVisitor::traverse( Node* n )
-{
-  _results.reset( );
-
-  Visitor::traverse( n );
-  _results.sortCandidates( [ &] ( Node* first, Node* second ) -> bool
+  PickingVisitor::PickingVisitor( const Ray& ray,
+    Results &results, FilterType filter )
+    : _ray( ray )
+    , _results( results)
+    , _filter( filter )
   {
-    return false;
-  } );
-}
-
-void PickingVisitor::visitNode( Node* n )
-{
-  if ( _filter == nullptr || _filter( n ) )
-  {
-    _results.pushCandidate( n );
   }
-}
-void PickingVisitor::visitGroup( Group* group )
-{
-  visitNode( group );
-  group->forEachNode( [ &] ( Node* n )
+
+  PickingVisitor::~PickingVisitor( )
   {
-    /*if (n-> )*/
-    n->accept( *this );
-    /*}*/
-  } );
+  }
+
+  void PickingVisitor::traverse( Node* n )
+  {
+    _results.reset( );
+
+    Visitor::traverse( n );
+    _results.sortCandidates( [ &] ( Node* first, Node* second ) -> bool
+    {
+      return false;
+    } );
+  }
+
+  void PickingVisitor::visitNode( Node* n )
+  {
+    if ( _filter == nullptr || _filter( n ) )
+    {
+      _results.pushCandidate( n );
+    }
+  }
+  void PickingVisitor::visitGroup( Group* group )
+  {
+    visitNode( group );
+    group->forEachNode( [ &] ( Node* n )
+    {
+      /*if (n-> )*/
+      n->accept( *this );
+      /*}*/
+    } );
+  }
 }

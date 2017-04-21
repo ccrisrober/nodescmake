@@ -31,8 +31,9 @@ include(Common)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w")
 
 #common_find_package( tinyxml2 REQUIRED  )
+#common_find_package( bullet REQUIRED  )
 
-#list (APPEND NODES_DEPENDENT_LIBRARIES tinyxml2)
+#list ( APPEND NODES_DEPENDENT_LIBRARIES bullet )
 
 common_find_package_post( )
 

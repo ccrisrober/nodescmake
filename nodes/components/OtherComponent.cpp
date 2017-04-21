@@ -1,12 +1,14 @@
 #include "OtherComponent.h"
 
-
-OtherComponent::OtherComponent( )
-: Component( )
+namespace nodes
 {
-}
+  OtherComponent::OtherComponent( )
+  : Component( )
+  {
+  }
 
 
-OtherComponent::~OtherComponent( )
-{
+  OtherComponent::~OtherComponent( )
+  {
+  }
 }
