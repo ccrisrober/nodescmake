@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include <nodes/nodes.h>
+using namespace nodes;
 
 int main( )
 {
@@ -22,9 +23,12 @@ int main( )
   camera->layer( ).enable( 2 );
   camera->layer( ).enable( 3 );
 
-  Engine e;
-  e.setScene( scene );
-  e.run( );
+  nodes::DumpVisitor dv;
+  dv.traverse( scene );
+
+  App app;
+  app.setSceneNode( scene );
+  app.run( );
 
   /*std::cout << std::endl << std::endl << std::endl;
 

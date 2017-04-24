@@ -1,0 +1,99 @@
+#define NODES_PHYSICS_STEP_DT 1.0f / 6.0f
+
+class PhysicsSystem: public System
+{
+public:
+  PhysicsSystem( void );
+    : System( std::string( "PhysicsSystem" ) )
+  {
+    //_worldCtx->setGravity( vec3( 0.0f, -9.8f, 0.0f ));
+  }
+  virtual ~PhysicsSystem( void );
+
+  //virtual bool start( void ) override;
+  virtual void update( void )
+  {
+    _worldCtx->step( NODES_PHYSICS_STEP_DT );
+  }
+  virtual void stop( void ) override
+  {
+    System::stop( );
+    // TODO: Stop worldCtx
+  }
+
+private:
+  PhysicsWorld _worldCtx;
+};
+
+class PhysicsWorld
+{
+private:
+  static btVector3 convert( const vec3& v )
+  {
+    return btVector3( v.x, v.y, v.z );
+  }
+  static vec3 convert( const btVector3& v )
+  {
+    return vec3( v.x(), v.y(), v.z() );
+  }
+public:
+  PhysicsWorld( void )
+    : _gravity( 0.0f, -9.8f, 0.0f )
+  {
+    _broadphase = new btDbvtBroadphase( );
+    _collisionConfiguration = new btDefaultCollisionConfiguration( );
+    _dispatcher = new btCollisionDispatcher( _collisionConfiguration );
+    _solver = new btSequentialImpulseConstraintSolver( );
+
+    _world = new btDiscreteDynamicsWorld(
+      _dispatcher,
+      _broadphase,
+      _solver,
+      _collisionConfiguration
+    );
+
+    setGravity( _gravity );
+  }
+  ~PhysicsWorld( void ) { }
+
+  btDiscreteDynamicsWorld* world( void ) { return _world; }
+  const vec3 getGravity( void ) const { return _gravity; }
+  void setGravity( const vec3& gravity )
+  {
+    _gravity = gravity;
+    if( _world != nullptr )
+    {
+      _world->setGravity( PhysicsWorld::convert( gravity ) );
+    }
+  }
+
+  void step( const float& dt )
+  {
+    if ( _world == nullptr )
+    {
+      return;
+    }
+
+    _world->stepSimulation( dt );
+  }
+
+  void stop( void )
+  {
+    _world = nullptr;
+
+  }
+
+
+private:
+  void init( void );
+  vec3 _gravity;
+
+  btBroadphaseInterface* _broadphase;
+  btCollisionConfiguration* _collisionConfiguration;
+  btCollisionDispatcher* _dispatcher;
+  btConstraintSolver* _solver;
+
+  /* Use continuous collision detection against objects set to Continuous and Continuous Dynamic Collision. It will also use continuous collision detection against static MeshColliders (without a rigidbody). For all other colliders it uses discreet collision detection. Used for fast moving objects.*/
+  btDiscreteDynamicsWorld _world;
+  //btDynamicsWorld* _world;
+};

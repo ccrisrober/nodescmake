@@ -17,10 +17,10 @@ namespace nodes
     for ( auto& ie : _imageEffects )
     {
       unsigned int fbo = 0;
-      ie->compute( camera );
+      ie->compute( renderer, camera );
 
       renderer->bindFBO( fbo );
-      ie->apply( camera );
+      ie->apply( renderer, camera );
       renderer->unbindFBO( fbo );
       // Swap FBO?
       swapBuffers( renderer );

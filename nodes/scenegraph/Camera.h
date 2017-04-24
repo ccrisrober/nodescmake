@@ -2,6 +2,7 @@
 #define __NODES_CAMERA__
 
 #include "Node.h"
+#include "../Frustum.hpp"
 #include <nodes/api.h>
 
 namespace nodes
@@ -26,11 +27,14 @@ namespace nodes
     static Camera *_mainCamera;
   public:
     NODES_API
-    Camera( void );
+    explicit Camera( void );
+
     NODES_API
-    Camera( RenderPass* rp );
+    Camera( const float& fov, const float& ar,
+      const float& near, const float& far );
+
     NODES_API
-    virtual ~Camera( );
+    virtual ~Camera( void );
   public:
     NODES_API
     virtual void accept( Visitor& v ) override;
@@ -53,7 +57,43 @@ namespace nodes
   private:
     bool _isMainCamera = false;
   protected:
+    Frustum _frustum;
     RenderPass* _renderPass;
+
+  public:
+    void computeCullingPlanes( void )
+    {
+      std::cout << "Computing near plane at _cullingPlanes[0]" << std::endl;
+      std::cout << "Computing far plane at _cullingPlanes[1]" << std::endl;
+      std::cout << "Computing top plane at _cullingPlanes[2]" << std::endl;
+      std::cout << "Computing bottom plane at _cullingPlanes[3]" << std::endl;
+      std::cout << "Computing left plane at _cullingPlanes[4]" << std::endl;
+      std::cout << "Computing right plane at _cullingPlanes[5]" << std::endl;
+    }
+
+    NODES_API
+    void setCullingEnabled( bool value ) { _cullingEnabled = value; }
+    NODES_API
+    bool isCullingEnabled( void ) const { return _cullingEnabled; }
+
+    bool culled( /*const BoundingVolume *v*/ ) const
+    {
+      if( !isCullingEnabled( ) )
+      {
+        return false;
+      }
+      /*for( auto& plane: _cullingPlanes )
+      {
+        if ( plane->inside( v ) )
+        {
+          return true;
+        }
+      }*/
+      return false;
+    }
+  private:
+    bool _cullingEnabled = true;
+    // std::array< Plane, 6 > _cullingPlanes;
   };
 }
 

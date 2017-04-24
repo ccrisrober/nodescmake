@@ -15,12 +15,20 @@ namespace nodes
     Primitive( const std::string& name_ )
       : name( name_ )
     {
+      _type = Type::TRIANGLES;
     }
     std::string name;
     void render( )
     {
       std::cout << "\t-Primitive '" << name << "'" << std::endl;
     }
+    enum Type
+    {
+      POINTS,
+      LINES,
+      TRIANGLES
+    };
+    Type _type;
   };
 
   class Geometry: public Node

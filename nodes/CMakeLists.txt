@@ -29,11 +29,13 @@ set( NODES_PUBLIC_HEADERS
   visitors/UpdateComponents.h
   visitors/UpdateWorldState.h
   visitors/Visitor.h
+  visitors/DumpVisitor.h
 
   #third_party/pugixml.hpp
   #third_party/pugiconfig.hpp
 
   App.hpp
+  Frustum.hpp
   Renderer.h
   RenderQueue.h
   ImageEffect.hpp
@@ -49,7 +51,7 @@ set( NODES_PUBLIC_HEADERS
   Clock.hpp
 
 
-  physics/components/ICollider.hpp
+  physics/components/Collider.hpp
   physics/components/BoxCollider.hpp
   physics/components/MeshCollider.hpp
 
@@ -87,6 +89,7 @@ set( NODES_SOURCES
   visitors/UpdateComponents.cpp
   visitors/UpdateWorldState.cpp
   visitors/Visitor.cpp
+  visitors/DumpVisitor.cpp
 
   #third_party/pugixml.cpp
 

@@ -13,12 +13,34 @@
 
 namespace nodes
 {
+  class Quaternion;
+  class EulerAngles
+  {
+  public:
+    void setOnChangeCallback( const std::function<void( Quaternion )>& cb )
+    {
+      _cb = cb;
+    }
+    std::function<void( Quaternion )> _cb;
+  };
+  class Quaternion
+  {
+  public:
+    void setOnChangeCallback( const std::function<void( EulerAngles )>& cb )
+    {
+      _cb = cb;
+    }
+    std::function<void( EulerAngles )> _cb;
+  };
   class Transformation
   {
   public:
     void computeFrom( const Transformation&, const Transformation& )
     {
       std::cout << "Computing transform" << std::endl;
+    }
+    void translate( const float&, const float&, const float& )
+    {
     }
   };
 
@@ -35,6 +57,8 @@ namespace nodes
 
   public:
     NODES_API
+    Node( );
+    NODES_API
     Node( const std::string& name );
     NODES_API
     virtual ~Node( void );
@@ -42,6 +66,7 @@ namespace nodes
     std::string name( void ) const;
     NODES_API
     void name( const std::string& name );
+    std::string tag;
   protected:
     Node* _parent;
     std::string _name;

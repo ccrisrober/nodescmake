@@ -20,49 +20,42 @@ set( NODESEXAMPLECAR_LINK_LIBRARIES
 common_application( nodesExampleCar )
 
 
+set( NODESEXAMPLE02_HEADERS )
+set( NODESEXAMPLE02_SOURCES example02.cpp )
+set( NODESEXAMPLE02_LINK_LIBRARIES
+  nodes
+)
+common_application( nodesExample02 )
 
-##set( NODESEXAMPLE02_HEADERS )
-##set( NODESEXAMPLE02_SOURCES example02.cpp )
-##set( NODESEXAMPLE02_LINK_LIBRARIES
-##  nodes
-##)
-##common_application( nodesExample02 )
-##
-##
-##set( NODESEXAMPLEGROUP_HEADERS )
-##set( NODESEXAMPLEGROUP_SOURCES exampleGroup.cpp )
-##set( NODESEXAMPLEGROUP_LINK_LIBRARIES
-##  nodes
-##)
-##common_application( nodesExampleGroup )
-##
-##
-##
-##set( NODESEXAMPLEXML_HEADERS )
-##set( NODESEXAMPLEXML_SOURCES exampleXML.cpp )
-##set( NODESEXAMPLEXML_LINK_LIBRARIES
-##  nodes
-##)
-##common_application( nodesExampleXML )
-##
-##set( NODESTESTS_HEADERS )
-##set( NODESTESTS_SOURCES tests.cpp )
-##set( NODESTESTS_LINK_LIBRARIES
-##  nodes
-##)
-##common_application( nodesTests )
-##
-##set( NODESEXAMPLEPOSTPROCESS_HEADERS )
-##set( NODESEXAMPLEPOSTPROCESS_SOURCES examplePostProcess.cpp )
-##set( NODESEXAMPLEPOSTPROCESS_LINK_LIBRARIES
-##  nodes
-##)
-##common_application( nodesExamplePostProcess )
-##
-##set( NODESEXAMPLEOFFSCREEN_HEADERS )
-##set( NODESEXAMPLEOFFSCREEN_SOURCES exampleOffScreen.cpp )
-##set( NODESEXAMPLEOFFSCREEN_LINK_LIBRARIES
-##  nodes
-##)
-##common_application( nodesExampleOffScreen )
-##
+
+set( NODESEXAMPLEGROUP_HEADERS )
+set( NODESEXAMPLEGROUP_SOURCES exampleGroup.cpp )
+set( NODESEXAMPLEGROUP_LINK_LIBRARIES
+  nodes
+)
+common_application( nodesExampleGroup )
+
+
+set( NODESTESTS_HEADERS )
+set( NODESTESTS_SOURCES tests.cpp )
+set( NODESTESTS_LINK_LIBRARIES
+  nodes
+)
+common_application( nodesTests )
+
+
+set( NODESEXAMPLEPOSTPROCESS_HEADERS )
+set( NODESEXAMPLEPOSTPROCESS_SOURCES examplePostProcess.cpp )
+set( NODESEXAMPLEPOSTPROCESS_LINK_LIBRARIES
+  nodes
+)
+common_application( nodesExamplePostProcess )
+
+
+set( NODESEXAMPLEOFFSCREEN_HEADERS )
+set( NODESEXAMPLEOFFSCREEN_SOURCES exampleOffScreen.cpp )
+set( NODESEXAMPLEOFFSCREEN_LINK_LIBRARIES
+  nodes
+)
+common_application( nodesExampleOffScreen )
+

@@ -12,9 +12,9 @@ namespace nodes
   {
   public:
     NODES_API
-    virtual void compute( Camera* camera ) override;
+    virtual void compute( Renderer*, Camera* camera ) override;
     NODES_API
-    virtual void apply( Camera* camera ) override;
+    virtual void apply( Renderer*, Camera* camera ) override;
   protected:
     int shader;
   };

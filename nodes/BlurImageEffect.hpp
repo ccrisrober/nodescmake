@@ -1,5 +1,5 @@
-#ifndef __NODES_GREY_IMAGE_EFFECT__
-#define __NODES_GREY_IMAGE_EFFECT__
+#ifndef __NODES_BLUR_IMAGE_EFFECT__
+#define __NODES_BLUR_IMAGE_EFFECT__
 
 #include "ImageEffect.hpp"
 
@@ -7,7 +7,7 @@ namespace nodes
 {
   class Camera;
 
-  class GreyToneEffect :
+  class BlurToneEffect :
     public ImageEffect
   {
   public:
@@ -20,4 +20,13 @@ namespace nodes
   };
 }
 
-#endif /* __NODES_GREY_IMAGE_EFFECT__ */
+#include "BlurToneEffect.hpp"
+#include "scenegraph/Camera.h"
+#include "Renderer.h"
+
+namespace nodes
+{
+
+}
+
+#endif /* __NODES_BLUR_IMAGE_EFFECT__ */

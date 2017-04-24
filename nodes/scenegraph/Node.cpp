@@ -2,9 +2,14 @@
 
 namespace nodes
 {
+  Node::Node( )
+    : Node( std::string( "Node" ) )
+  {
+  }
   Node::Node( const std::string& name )
   : _parent( nullptr )
   , _name( name )
+  , tag( std::string("Nothing") )
   {
   }
 

@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include <nodes/nodes.h>
+using namespace nodes;
 
 int main( )
 {
@@ -22,9 +23,12 @@ int main( )
   auto camera = new Camera( );
   scene->addChild( camera );
 
-  Engine e;
-  e.setScene( scene );
-  e.run( );
+  nodes::DumpVisitor dv;
+  dv.traverse( scene );
+
+  App app;
+  app.setSceneNode( scene );
+  app.run( );
   delete scene;
   system( "PAUSE" );
   return 0;

@@ -25,6 +25,10 @@ int main( )
   auto cam = new Camera( );
   Camera::mainCamera( cam );
   scene->addChild( cam );
+  cam->local( ).translate( 0.0f, 1.0f, 0.0f );
+
+  nodes::DumpVisitor dv;
+  dv.traverse( scene );
 
   App app;
   app.setSceneNode( scene );

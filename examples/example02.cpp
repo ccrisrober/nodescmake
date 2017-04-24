@@ -2,6 +2,8 @@
 
 #include <nodes/nodes.h>
 
+using namespace nodes;
+
 int main( )
 {
   auto scene = new Group( "scene" );
@@ -51,12 +53,15 @@ int main( )
   ccv2.traverse( scene );
   std::cout << ccv2._childrens << std::endl;*/
 
-  Engine e;
-  e.setScene( scene );
+  nodes::DumpVisitor dv;
+
+  App app;
+  app.setSceneNode( scene );
 
   for ( unsigned int i = 0, l = centerSwitch->numChildren( ); i < l; ++i )
   {
-    e.run( );
+    dv.traverse( scene );
+    app.run( );
     if ( i > 0 )
     {
       std::cout << std::endl << std::endl << std::endl;

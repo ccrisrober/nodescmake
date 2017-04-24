@@ -1,16 +1,16 @@
 #ifndef __NODES_MESH_COLLIDER__
 #define __NODES_MESH_COLLIDER__
 
-#include "ICollider.hpp"
+#include "Collider.hpp"
 
 namespace nodes
 {
-  class MeshCollider: public ICollider
+  class MeshCollider: public Collider
   {
     IMPLEMENT_COMPONENT( MeshCollider )
     NODES_API
     MeshCollider( void )
-    : ICollider( )
+    : Collider( )
     {
     }
   };

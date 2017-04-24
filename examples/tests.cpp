@@ -1,6 +1,7 @@
 #include <iostream>
 #include <nodes/nodes.h>
 #include <assert.h>
+using namespace nodes;
 
 class ParentVisitorName : public Visitor
 {

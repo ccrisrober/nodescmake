@@ -1,13 +1,14 @@
 #include "SepiaImageEffect.hpp"
 #include "scenegraph/Camera.h"
+#include "Renderer.h"
 
 namespace nodes
 {
-  void SepiaToneEffect::compute( Camera* )
+  void SepiaToneEffect::compute( Renderer*, Camera* )
   {
   }
 
-  void SepiaToneEffect::apply( Camera* camera )
+  void SepiaToneEffect::apply( Renderer*,  Camera* camera )
   {
     // bind shader, texture, draw and unbind texture and shader
     //std::cout << "Apply SepiaToneEffect" << std::endl;

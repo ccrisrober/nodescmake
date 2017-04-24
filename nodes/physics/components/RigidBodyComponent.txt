@@ -1,0 +1,93 @@
+namespace nodes
+{
+  class RigidBodyComponent: public Component
+  {
+    IMPLEMENT_COMPONENT( RigidBodyComponent )
+  public:
+    NODES_API
+    RigidBodyComponent( const float& mass )
+      : _mass ( mass )
+      , _kinematic( false )
+    {
+
+    }
+    NODES_API
+    virtual ~RigidBodyComponent( void );
+
+    NODES_API
+    virtual void onAttach( void ) override
+    {
+
+    }
+    NODES_API
+    virtual void onDetach( void ) override
+    {
+      if ( _body != nullptr )
+      {
+
+      }
+    }
+
+    NODES_API
+    void mass( const float& mass ) { _mass = mass; }
+    NODES_API
+    float mass( void ) const { return _mass; }
+    NODES_API
+    void setKinematic( const bool& kinematic ) { _kinematic = kinematic; }
+    NODES_API
+    bool isKinematic( void ) const { return _kinematic; }
+    NODES_API
+    virtual void start( void ) override;¡
+    {
+      createBoundingShape( );
+      if ( _shape != nullptr )
+      {
+
+      }
+      if ( _body != nulltr )
+      {
+        // TODO: Add body to world
+      }
+    }
+    NODES_API
+    virtual void update( const float& dt ) override
+    {
+      if ( _body == nulltr )
+      {
+        return;
+      }
+
+      if ( isKinematic( ) )
+      {
+        _body->setWorldTransform( node()->world( ) );
+      }
+      else
+      {
+
+      }
+    }
+  private:
+    void createBoundingShape( void )
+    {
+      Collider* collider = node( )->getComponent< Collider >( );
+      if ( collider == nullptr )
+      {
+        return;
+      }
+      _shape = collider->generateBoundingShape( );
+    }
+    void createBody( void )
+    {
+      if ( _shape == nullptr )
+      {
+        return;
+      }
+      // ...
+    }
+  protected:
+    btRigidBody _body;
+    btCollisionShape _shape;
+    float _mass;
+    bool _kinematic;
+  };
+}

@@ -1,0 +1,66 @@
+#ifndef __NODES_DEBUG_RENDER_HELPER__
+#define __NODES_DEBUG_RENDER_HELPER__
+
+namespace nodes
+{
+  class Renderer;
+  class Camera;
+
+  class DebugRenderHelper: Singleton< DebugRenderHelper >
+  {
+  public:
+    //void renderLine( Renderer* renderer, Camera* c, const vec3& from, const vec3& to, const Color4& color = Color4::White );
+    void renderBox( Renderer* renderer, Camera* c, const vec3& pos, const vec3& scale, const Color4& color = Color4::White );
+    void renderSphere( Renderer* renderer, Camera* c, const vec3& pos, const float& radius = 1.0f , const Color4& color = Color4::White );
+
+  protected:
+    void render( Renderer* renderer, Camera* c, Primitive* p, const Transform& model, const Color4& color );
+  };
+}
+
+#endif /* __NODES_DEBUG_RENDER_HELPER__ */
+
+
+#include "DebugRenderHelper.hpp"
+#include "Renderer.h"
+#include "scenegraph/Camera.h"
+
+namespace nodes
+{
+  /*void DebugRenderHelper::renderLine( Renderer* renderer, Camera* c, const vec3& from, const vec3& to, const Color4& color )
+  {
+
+  }*/
+  void DebugRenderHelper::renderBox( Renderer* renderer, Camera* c, const vec3& pos, const vec3& scale, const Color4& color )
+  {
+    Transformation model;
+    model.setPosition( position );
+    model.setScale( scale );
+
+    Primitive* box = ....
+    render( renderer, camera, box, model, color );
+  }
+  void DebugRenderHelper::renderSphere( Renderer* renderer, Camera* c, const vec3& pos, const float& radius = 1.0f , const Color4& color )
+  {
+    Transformation model;
+    model.setPosition( position );
+    model.setScale( scale );
+
+    Primitive* sphere = ....
+    render( renderer, camera, box, model, color );
+  }
+
+  void DebugRenderHelper::render( Renderer* renderer, Camera* c, Primitive* p, const Transform& model, const Color4& color )
+  {
+    /**
+     * Bind program
+     * Bind MVP uniforms
+     * Bind Diffuse color
+     * Bind VBO and EBO
+     * Draw primitive
+     * Unbind VBO and EBO
+     * Unbind program
+     **/
+  }
+
+}

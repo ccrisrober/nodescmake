@@ -73,9 +73,13 @@ int main( )
   Camera::mainCamera( cam );
   scene->addChild( cam );
 
+
+  nodes::DumpVisitor dv;
+  dv.traverse( scene );
+
   App app;
   app.setSceneNode( scene );
-  //app.run( );
+  app.run( );
   delete scene;
   system( "PAUSE" );
   return 0;

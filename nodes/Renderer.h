@@ -2,6 +2,7 @@
 #define __NODES_RENDERER__
 
 #include "scenegraph/Camera.h"
+#include "scenegraph/Geometry.h"
 
 #include <vector>
 
@@ -9,6 +10,11 @@ namespace nodes
 {
   class RenderPass;
   class RenderQueue;
+
+  class Material
+  {
+
+  };
 
   class Renderer
   {
@@ -23,6 +29,8 @@ namespace nodes
   public:
     virtual void bindFBO( unsigned int ) { }
     virtual void unbindFBO( unsigned int ) { }
+    virtual void drawPrimitive( Material* material, Primitive* primitive ) { }
+    // virtual void drawBuffer( Material* material ... ) { }
   };
 
 
@@ -70,6 +78,26 @@ namespace nodes
         //std::cout << "Unbind Default FBO" << std::endl;
         std::cout << "Final Drawing into default fbo" << std::endl;
       }
+    }
+
+    virtual void drawPrimitive( Material* material, Primitive* primitive )
+    {
+      std::string type;
+      switch ( primitive->_type )
+      {
+        case Primitive::Type::POINTS:
+          type = "POINTS";
+          break;
+        case Primitive::Type::LINES:
+          type = "LINES";
+          break;
+        case Primitive::Type::TRIANGLES:
+        default:
+          type = "TRIANGLES";
+          break;
+      }
+
+      // glDrawElements( type, primitive->indexBuffer( )->count( ), GL_UNSIGNED_SHORT, 0) );
     }
   };
 }

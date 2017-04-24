@@ -6,15 +6,16 @@
 namespace nodes
 {
   class Camera;
+  class Renderer;
   class ImageEffect
   {
   public:
     NODES_API
     // TODO Renderer?
-    virtual void apply( Camera* camera ) = 0;
+    virtual void apply( Renderer* r, Camera* camera ) = 0;
     NODES_API
     // TODO Renderer?
-    virtual void compute( Camera* camera ) = 0;
+    virtual void compute( Renderer* r, Camera* camera ) = 0;
 
     bool enabled = true;
   protected:
