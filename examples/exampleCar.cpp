@@ -1,39 +1,37 @@
 #include <iostream>
 
-#include <nodes/nodes.h>
+#include <mb/mb.h>
 
-using namespace nodes;
+using namespace mb;
 
 #include <vector>
 
-class CarController : public nodes::Component
+class CarController : public mb::Component
 {
   IMPLEMENT_COMPONENT( CarController )
 public:
   virtual void start( )
   {
-    auto group = ( Group* ) node( );
-    group->forEachNode( [ &] ( nodes::Node* n )
+    FindNodes findLightsVisitor( [ &] ( Node*n )
     {
-      if ( n->name( ) == "front" )
+      if ( n->tag == "Light" )
       {
-        std::cout << "Fetching lights" << std::endl;
-        auto g2 = ( Group* ) n;
-        g2->forEachNode( [ &] ( nodes::Node* n2 )
-        {
-          _lights.push_back( n2 );
-        } );
+        return true;
       }
-      else if ( n->name( ) == "wheels" )
-      {
-        std::cout << "Fetching wheels" << std::endl;
-        auto g2 = ( Group* ) n;
-        g2->forEachNode( [ &] ( nodes::Node* n2 )
-        {
-          _wheels.push_back( n2 );
-        } );
-      }
+      return false;
     } );
+    findLightsVisitor.traverse( node( ) );
+    _lights = findLightsVisitor.matches( );
+    FindNodes findWheelVisitor( [ &] ( Node*n )
+    {
+      if ( n->tag == "Wheel" )
+      {
+        return true;
+      }
+      return false;
+    } );
+    findWheelVisitor.traverse( node( ) );
+    _wheels = findWheelVisitor.matches( );
   }
   std::vector<Node*> _lights;
   std::vector<Node*> _wheels;
@@ -41,7 +39,7 @@ public:
 
 int main( )
 {
-  auto scene = new Group( "scene" );
+  auto scene = new Scene( "scene" );
 
   auto car = new Group( "car" );
   scene->addChild( car );
@@ -51,6 +49,7 @@ int main( )
   {
     auto light = new Light( );
     light->name( std::string("Light") + std::to_string( i + 1 ) );
+    light->tag = "Light";
     front->addChild( light );
   }
   car->addChild( front );
@@ -62,6 +61,7 @@ int main( )
       std::string("Wheel") +
       std::to_string( i + 1 )
     );
+    wheel->tag = "Wheel";
     wheels->addChild( wheel );
   }
   car->addChild( wheels );
@@ -74,7 +74,7 @@ int main( )
   scene->addChild( cam );
 
 
-  nodes::DumpVisitor dv;
+  mb::DumpVisitor dv;
   dv.traverse( scene );
 
   App app;

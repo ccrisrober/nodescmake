@@ -4,58 +4,58 @@ include_directories(
   ${CMAKE_CURRENT_BINARY_DIR}
 )
 
-set( NODESEXAMPLE01_HEADERS )
-set( NODESEXAMPLE01_SOURCES example01.cpp )
-set( NODESEXAMPLE01_LINK_LIBRARIES
-  nodes
+set( MBEXAMPLE01_HEADERS )
+set( MBEXAMPLE01_SOURCES example01.cpp )
+set( MBEXAMPLE01_LINK_LIBRARIES
+  mb
 )
-common_application( nodesExample01 )
+common_application( mbExample01 )
 
 
-set( NODESEXAMPLECAR_HEADERS )
-set( NODESEXAMPLECAR_SOURCES exampleCar.cpp )
-set( NODESEXAMPLECAR_LINK_LIBRARIES
-  nodes
+set( MBEXAMPLECAR_HEADERS )
+set( MBEXAMPLECAR_SOURCES exampleCar.cpp )
+set( MBEXAMPLECAR_LINK_LIBRARIES
+  mb
 )
-common_application( nodesExampleCar )
+common_application( mbExampleCar )
 
 
-set( NODESEXAMPLE02_HEADERS )
-set( NODESEXAMPLE02_SOURCES example02.cpp )
-set( NODESEXAMPLE02_LINK_LIBRARIES
-  nodes
+set( MBEXAMPLE02_HEADERS )
+set( MBEXAMPLE02_SOURCES example02.cpp )
+set( MBEXAMPLE02_LINK_LIBRARIES
+  mb
 )
-common_application( nodesExample02 )
+common_application( mbExample02 )
 
 
-set( NODESEXAMPLEGROUP_HEADERS )
-set( NODESEXAMPLEGROUP_SOURCES exampleGroup.cpp )
-set( NODESEXAMPLEGROUP_LINK_LIBRARIES
-  nodes
+set( MBEXAMPLEGROUP_HEADERS )
+set( MBEXAMPLEGROUP_SOURCES exampleGroup.cpp )
+set( MBEXAMPLEGROUP_LINK_LIBRARIES
+  mb
 )
-common_application( nodesExampleGroup )
+common_application( mbExampleGroup )
 
 
-set( NODESTESTS_HEADERS )
-set( NODESTESTS_SOURCES tests.cpp )
-set( NODESTESTS_LINK_LIBRARIES
-  nodes
+set( MBTESTS_HEADERS )
+set( MBTESTS_SOURCES tests.cpp )
+set( MBTESTS_LINK_LIBRARIES
+  mb
 )
-common_application( nodesTests )
+common_application( mbTests )
 
 
-set( NODESEXAMPLEPOSTPROCESS_HEADERS )
-set( NODESEXAMPLEPOSTPROCESS_SOURCES examplePostProcess.cpp )
-set( NODESEXAMPLEPOSTPROCESS_LINK_LIBRARIES
-  nodes
+set( MBEXAMPLEPOSTPROCESS_HEADERS )
+set( MBEXAMPLEPOSTPROCESS_SOURCES examplePostProcess.cpp )
+set( MBEXAMPLEPOSTPROCESS_LINK_LIBRARIES
+  mb
 )
-common_application( nodesExamplePostProcess )
+common_application( mbExamplePostProcess )
 
 
-set( NODESEXAMPLEOFFSCREEN_HEADERS )
-set( NODESEXAMPLEOFFSCREEN_SOURCES exampleOffScreen.cpp )
-set( NODESEXAMPLEOFFSCREEN_LINK_LIBRARIES
-  nodes
+set( MBEXAMPLEOFFSCREEN_HEADERS )
+set( MBEXAMPLEOFFSCREEN_SOURCES exampleOffScreen.cpp )
+set( MBEXAMPLEOFFSCREEN_LINK_LIBRARIES
+  mb
 )
-common_application( nodesExampleOffScreen )
+common_application( mbExampleOffScreen )
 

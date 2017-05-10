@@ -1,13 +1,13 @@
 #include <iostream>
 
-#include <nodes/nodes.h>
+#include <mb/mb.h>
 
-using namespace nodes;
+using namespace mb;
 
 
 int main( )
 {
-  auto scene = new Group( "scene" );
+  auto scene = new Scene( "scene" );
 
   auto geom = new Geometry( "geom" );
   geom->addPrimitive( new Primitive( "cube" ) );
@@ -27,7 +27,7 @@ int main( )
   scene->addChild( cam );
   cam->local( ).translate( 0.0f, 1.0f, 0.0f );
 
-  nodes::DumpVisitor dv;
+  mb::DumpVisitor dv;
   dv.traverse( scene );
 
   App app;

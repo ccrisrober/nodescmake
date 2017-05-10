@@ -1,11 +1,11 @@
 #include <iostream>
 
-#include <nodes/nodes.h>
-using namespace nodes;
+#include <mb/mb.h>
+using namespace mb;
 
 int main( )
 {
-  auto scene = new Group( "scene" );
+  auto scene = new Scene( "scene" );
 
   auto node0 = new Group( "node0" );
   auto node2 = new Group( "node2" );
@@ -23,7 +23,7 @@ int main( )
   auto camera = new Camera( );
   scene->addChild( camera );
 
-  nodes::DumpVisitor dv;
+  mb::DumpVisitor dv;
   dv.traverse( scene );
 
   App app;

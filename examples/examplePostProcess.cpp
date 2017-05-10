@@ -1,11 +1,11 @@
 #include <iostream>
 
-#include <nodes/nodes.h>
-using namespace nodes;
+#include <mb/mb.h>
+using namespace mb;
 
 int main( )
 {
-  auto scene = new Group( "scene" );
+  auto scene = new Scene( "scene" );
 
   auto geom = new Geometry( "nodeGeom" );
   geom->addPrimitive( new Primitive( "FirstPrimitive" ) );
@@ -14,7 +14,7 @@ int main( )
 
   auto camera = new Camera( );
   camera->name( "PPCamera" );
-  camera->renderPass( new PostRP( new StandardRP( ) ) );
+  camera->renderPass( new PostRenderingPass( new StandardRenderingPass( ) ) );
   camera->renderPass( )->imageEffects( ).push_back( new SepiaToneEffect( ) );
   camera->renderPass( )->imageEffects( ).push_back( new GreyToneEffect( ) );
   scene->addChild( camera );
@@ -23,7 +23,7 @@ int main( )
   camera->layer( ).enable( 2 );
   camera->layer( ).enable( 3 );
 
-  nodes::DumpVisitor dv;
+  mb::DumpVisitor dv;
   dv.traverse( scene );
 
   App app;

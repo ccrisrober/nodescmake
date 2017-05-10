@@ -1,12 +1,12 @@
 #include <iostream>
 
-#include <nodes/nodes.h>
+#include <mb/mb.h>
 
-using namespace nodes;
+using namespace mb;
 
 int main( )
 {
-  auto scene = new Group( "scene" );
+  auto scene = new Scene( "scene" );
   auto leftNode = new Node( "leftNode" );
   auto centerSwitch = new Switch( "centerSwitch" );
   auto rightNode = new Node( "rightNode" );
@@ -53,7 +53,7 @@ int main( )
   ccv2.traverse( scene );
   std::cout << ccv2._childrens << std::endl;*/
 
-  nodes::DumpVisitor dv;
+  mb::DumpVisitor dv;
 
   App app;
   app.setSceneNode( scene );

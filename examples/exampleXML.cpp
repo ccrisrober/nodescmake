@@ -1,17 +1,17 @@
 #include <iostream>
-#include <nodes/nodes.h>
+#include <mb/mb.h>
 
 int main( )
 {
-  nodes::xml_document doc;
-  nodes::xml_parse_result result = doc.load_file( "C:\\Users\\maldicion069\\Desktop\\clonclon\\scene.xml" );
+  mb::xml_document doc;
+  mb::xml_parse_result result = doc.load_file( "C:\\Users\\maldicion069\\Desktop\\clonclon\\scene.xml" );
   //doc.LoadFile( "C:\\Users\\maldicion069\\Desktop\\clonclon\\scene.xml" );
   if ( result )
   {
     auto app = doc.child( "app" );
     std::cout << app.attribute( "title" ).value( ) << std::endl;
     auto objects = app.child( "objects" );
-    for ( nodes::xml_node obj = objects.child( "object" ); obj; obj = obj.next_sibling( "object" ) )
+    for ( mb::xml_node obj = objects.child( "object" ); obj; obj = obj.next_sibling( "object" ) )
     {
       std::cout << "OBJECT: " << obj.attribute( "name" ).value( ) << std::endl;
       auto transf = obj.child( "transform" );

@@ -1,5 +1,5 @@
-#ifndef __NODES_DEBUG_RENDER_HELPER__
-#define __NODES_DEBUG_RENDER_HELPER__
+#ifndef __MB_DEBUG_RENDER_HELPER__
+#define __MB_DEBUG_RENDER_HELPER__
 
 namespace nodes
 {
@@ -18,7 +18,7 @@ namespace nodes
   };
 }
 
-#endif /* __NODES_DEBUG_RENDER_HELPER__ */
+#endif /* __MB_DEBUG_RENDER_HELPER__ */
 
 
 #include "DebugRenderHelper.hpp"

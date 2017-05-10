@@ -1,18 +1,18 @@
 #include <iostream>
 
-#include <nodes/nodes.h>
-using namespace nodes;
+#include <mb/mb.h>
+using namespace mb;
 
 int main( )
 {
-  auto scene = new Group( "scene" );
+  auto scene = new Scene( "scene" );
 
   auto offScreenView = new Group( "Offscreen" );
   scene->addChild( offScreenView );
 
   auto offScreenCamera = new Camera( );
   offScreenCamera->name( "OFFCamera" );
-  offScreenCamera->renderPass( new OffscreenRP( 1 ) );
+  offScreenCamera->renderPass( new OffscreenRenderingPass( 1 ) );
   offScreenView->addChild( offScreenCamera );
 
   auto offGeom = new Geometry( "offGeom" );
@@ -35,7 +35,7 @@ int main( )
   camera->layer( ).enable( 2 );
   camera->layer( ).enable( 3 );
 
-  nodes::DumpVisitor dv;
+  mb::DumpVisitor dv;
   dv.traverse( scene );
 
   App app;

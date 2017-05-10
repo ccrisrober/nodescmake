@@ -1,7 +1,7 @@
 #include <iostream>
-#include <nodes/nodes.h>
+#include <mb/mb.h>
 #include <assert.h>
-using namespace nodes;
+using namespace mb;
 
 class ParentVisitorName : public Visitor
 {
@@ -57,7 +57,7 @@ int main( )
   group->addChild( lChild );
   assert( group->numChildren( ) == 2 );
 
-  // Detach all nodes
+  // Detach all mb
   assert( group->hasNodes( ) == true );
   group->removeChildren( );
   assert( group->hasNodes( ) == false );
